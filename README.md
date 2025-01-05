@@ -22,7 +22,7 @@ The **Vote System** is a web-based application designed for college elections wi
 - JavaScript
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/muthuabi/Vote_System`
+1. Clone the repository: `git clone https://github.com/muthuabi/Vote_System_V1`
 2. Set up your web server (e.g., XAMPP) and ensure it is connected to the same LAN network as the voting booths.
 3. Import the provided SQL file into your MySQL database.
 4. Update the database configuration in the project files with your database credentials.
