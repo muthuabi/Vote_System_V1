@@ -49,8 +49,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
-(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55'),
-(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', 'c3hjdm90ZTE5MjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55');
+(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', '2024-06-11 19:04:31', '2025-01-04 22:38:35'),
+(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', '2024-06-11 19:04:31', '2024-11-10 00:09:45');
 
 -- --------------------------------------------------------
 
