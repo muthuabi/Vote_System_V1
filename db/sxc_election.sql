@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
   `username` varchar(30) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `role` enum('admin','sub-admin','viewer','restricted') NOT NULL DEFAULT 'viewer',
   `created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -49,8 +49,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
-(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'bXV0aHUxMjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55'),
-(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', 'c3hjdm90ZTE5MjM=', 'admin', '2024-06-11 19:04:31', '2024-06-16 21:34:55');
+(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', '2024-06-11 19:04:31', '2025-01-04 22:38:35'),
+(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'admin', '2024-06-11 19:04:31', '2024-11-10 00:09:45');
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,16 @@ CREATE TABLE `candidates` (
   `created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `candidates`
+--
+
+INSERT INTO `candidates` (`candidate_id`, `regno`, `name`, `course`, `year`, `post_id`, `vote_count`, `image_url`, `shift`, `election_year`, `created_on`, `updated_on`) VALUES
+(2, '21UCS107', 'Krishnan', 'BSC COMPUTER SCIENCE', 3, 3, 0, '../assets/images/candidate_images/2024/IMG_20190716_210342.jpg', 'Shift-I', '2024-25', '2024-11-09 23:01:18', '2024-11-09 23:01:18'),
+(4, '21UCS106', 'Krishnan', 'BSC COMPUTER SCIENCE', 3, 3, 0, '../assets/images/candidate_images/2025/St.Xavier’s college.png', 'Shift-I', '2025-26', '2025-01-05 00:01:32', '2025-01-05 00:01:32'),
+(6, '21UCS110', 'Sri', 'BSC COMPUTER SCIENCE', 3, 1, 0, '../assets/images/candidate_images/2025/minef.png', 'Shift-I', '2025-26', '2025-01-05 00:03:14', '2025-01-05 00:03:14'),
+(8, '21UCS100', 'Muthukrishnan  M', 'BSC COMPUTER SCIENCE', 3, 1, 0, '../assets/images/candidate_images/2025/images7.jpg', 'Shift-I', '2025-26', '2025-01-05 00:04:13', '2025-01-05 00:04:13');
 
 -- --------------------------------------------------------
 
@@ -101,6 +111,14 @@ CREATE TABLE `polls` (
   `created_on` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `polls`
+--
+
+INSERT INTO `polls` (`poll_id`, `poll_year`, `poll_status`, `created_on`) VALUES
+(1, '2024-25', 'ended', '2024-11-09 23:07:22'),
+(2, '2025-26', 'started', '2025-01-04 23:20:10');
+
 -- --------------------------------------------------------
 
 --
@@ -118,6 +136,16 @@ CREATE TABLE `position` (
   `updated_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`post_id`, `post`, `description`, `post_shift`, `post_status`, `who_can_vote`, `created_at`, `updated_on`) VALUES
+(1, 'President', 'Serves', 'Both', 'opposed', 'MF', '2024-10-13 22:30:55', '2025-01-05 00:05:22'),
+(2, 'Vice President', 'Serves', 'Both', 'nocontest', 'MF', '2024-10-13 22:31:05', '2024-11-09 22:59:55'),
+(3, 'Secretary', 'Serves', 'Shift-I', 'opposed', 'F', '2024-10-13 22:31:21', '2025-01-05 00:06:30'),
+(4, 'Secretary', 'Serves', 'Shift-II', 'opposed', 'F', '2025-01-05 00:07:06', '2025-01-05 00:07:06');
+
 -- --------------------------------------------------------
 
 --
@@ -131,6 +159,16 @@ CREATE TABLE `votes` (
   `created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `last_voted_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `votes`
+--
+
+INSERT INTO `votes` (`vote_id`, `vote`, `candidate_id`, `created_on`, `last_voted_on`) VALUES
+(3, 3, 2, '2025-01-05 00:00:45', '2025-01-05 00:59:29'),
+(4, 3, 4, '2025-01-05 00:05:03', '2025-01-05 00:58:51'),
+(5, 7, 6, '2025-01-05 00:56:26', '2025-01-05 01:51:10'),
+(6, 4, 8, '2025-01-05 00:57:27', '2025-01-05 01:51:15');
 
 --
 -- Indexes for dumped tables
@@ -188,37 +226,37 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `old_data_table`
 --
 ALTER TABLE `old_data_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `polls`
 --
 ALTER TABLE `polls`
-  MODIFY `poll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `poll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `vote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -236,7 +274,6 @@ ALTER TABLE `candidates`
 ALTER TABLE `votes`
   ADD CONSTRAINT `fk_candidate_votes` FOREIGN KEY (`candidate_id`) REFERENCES `candidates` (`candidate_id`) ON UPDATE CASCADE;
 COMMIT;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
