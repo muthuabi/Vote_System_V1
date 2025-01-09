@@ -30,7 +30,7 @@
                     <small>
                     (Recognized as “College with Potential for Excellence” by UGC
                     <br>
-                    Accredited by NACC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
+                    Accredited by NAAC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
                     <b>Palayamkottai - 627 002</b>
                 </small>
             </div>

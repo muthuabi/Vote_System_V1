@@ -30,7 +30,7 @@
                 <small>
                     (Recognized as “College with Potential for Excellence” by UGC
                     <br>
-                    Accredited by NACC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
+                    Accredited by NAAC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
                     <b>Palayamkottai - 627 002</b>
                 </small>
             </div>
@@ -140,9 +140,8 @@
                             }
 
                             table_ballot_all.innerHTML += `
-            <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
-         
-            `;
+            <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>`;
+
                         }
                     })
                 })
@@ -155,9 +154,13 @@
         }
 
         fetch_ballot();
-        setInterval(() => {
-            fetch_ballot()
-        }, 3000);
+        setTimeout(()=>{
+            fetch_ballot();
+        }
+        ,700);
+        setInterval(()=>{
+            fetch_ballot();
+        },3000);
     });
 </script>
 

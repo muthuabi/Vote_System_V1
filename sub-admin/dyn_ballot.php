@@ -155,9 +155,13 @@
         }
 
         fetch_ballot();
-        setInterval(() => {
-            fetch_ballot()
-        }, 3000);
+        setTimeout(()=>{
+            fetch_ballot();
+        }
+        ,700);
+        setInterval(()=>{
+            fetch_ballot();
+        },3000);
     });
 </script>
 

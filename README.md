@@ -40,7 +40,7 @@ This project is licensed under the MIT License with additional terms. See the [L
 For any questions or inquiries, please contact me at [muthuabi292@gmail.com](mailto:muthuabi292@gmail.com).
 
 ## Project Link
-[GitHub Repository](https://github.com/muthuabi/Vote_System)
+[GitHub Repository](https://github.com/muthuabi/Vote_System_V1)
 
 ## Acknowledgement
 This project was developed for St. Xavier's College, Palayamkottai, after the course period ended and is not an academic project.
