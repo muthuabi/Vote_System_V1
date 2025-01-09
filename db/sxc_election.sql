@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
   `username` varchar(30) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `role` enum('admin','sub-admin','viewer','restricted') NOT NULL DEFAULT 'viewer',
   `created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_on` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
