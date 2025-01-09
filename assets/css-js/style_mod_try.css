@@ -706,8 +706,10 @@ footer
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   font-size: large;
+  padding:0;
 }
 .sidebar-card
 {
@@ -805,16 +807,18 @@ footer
 {
   overflow: hidden;
 } */
-#vote_status.up_vote
+.up_vote
 {
-  /* color:green; */
+   color:green; 
+   font-size: 35px;
   animation: anime-up-vote 1.5s linear infinite;
   
   /* animation: anime-blink 2s linear infinite; */
 }
-#vote_status.down_vote
+.down_vote
 {
-  /* color:red; */
+  color:red; 
+  font-size: 35px;
   animation: anime-down-vote 1.5s linear infinite;
   /* animation: anime-blink 2s linear infinite; */
 }
@@ -830,6 +834,7 @@ footer
   
   font-weight:lighter;
 }
+
 /* #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
 {
   content:'Won'; 

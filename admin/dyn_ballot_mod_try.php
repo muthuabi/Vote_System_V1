@@ -30,7 +30,7 @@
                 <small>
                     (Recognized as “College with Potential for Excellence” by UGC
                     <br>
-                    Accredited by NACC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
+                    Accredited by NAAC at A++ Grade with a CGPA of 3.66 out of 4 in IV Cycle)<br>
                     <b>Palayamkottai - 627 002</b>
                 </small>
             </div>
@@ -80,12 +80,12 @@
                     }
 
                     let poll_status = data.poll_status;
-                    document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
+                    document.querySelectorAll('.unopposed').forEach(element => {
                         element.style.display = 'none';
                     })
                     if (poll_status == "ended" || poll_status=="not_started") {
                         document.querySelector("#live").innerHTML=("Polling "+poll_status).toUpperCase();
-                        document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
+                        document.querySelectorAll('.unopposed').forEach(element => {
                             element.style.display = 'table-row';
                         })
                         document.querySelectorAll("#vote_status").forEach(element => {
@@ -120,13 +120,25 @@
                             // document.querySelector(`#can${values.candidate_id} #post_name`).innerHTML=values.post;
                             document.querySelector(`#can${values.candidate_id} #vote`).innerHTML = values.post_status == 'unopposed' ? 'unopposed' : values.vote;
                             if (data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id == values.candidate_id) || values.post_status == 'unopposed') {
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (poll_status == 'ended') ? 'Win' : '<img src="../assets/icons/up-arrow.svg" class="svg-icon" />';
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('up_vote');
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('down_vote');
+                                //console.log(data.max_post_data[values.post_id]);
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML='&#8593';
+                                if(poll_status=='ended')
+                                {
+                                    document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML ='Win';
+                                    document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('up_vote');
+
+                                }
+                                else
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).className='up_vote';
+                                // document.querySelector(`#can${values.candidate_id} #vote_status`).className='up_vote';
+                                // document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('down_vote');
                             } else {
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (poll_status == 'ended') ? '' : '<img src="../assets/icons/down-arrow.svg" class="svg-icon" />';
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('down_vote');
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('up_vote');
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML='&#8595';
+                                if(poll_status=='ended')
+                                    document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML ='';
+                                document.querySelector(`#can${values.candidate_id} #vote_status`).className='down_vote';
+                                // document.querySelector(`#can${values.candidate_id} #vote_status`).className='down_vote';
+                                // document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('up_vote');
                             }
 
                         } else {
@@ -139,10 +151,10 @@
                                 pos_arr.push(values.post_id);
                             }
 
+                            console.log(values);
                             table_ballot_all.innerHTML += `
-            <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
-         
-            `;
+            <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote >&#8593;':' class=down_vote>&#8595;'}</span></td></tr>`;
+
                         }
                     })
                 })
@@ -150,7 +162,7 @@
                     flag = 'failed';
                     const offline = new Event('offline');
                     window.dispatchEvent(offline);
-                    // console.error("Request failed:", textStatus, errorThrown);
+                    console.error("Request failed:", textStatus, errorThrown);
                 })
         }
 
@@ -162,9 +174,6 @@
         setInterval(()=>{
             fetch_ballot();
         },3000);
-        // setInterval(()=>{
-        //     location.reload();
-        // },60000);
     });
 </script>
 

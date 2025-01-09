@@ -34,7 +34,7 @@
         public function showMaxbyPostAll()
         {
             try{
-            $qry="Select op.post_id,oc.candidate_id as 'max_candidate_id',ov.vote from {$this->table1} as oc inner join {$this->table2} as op on op.post_id=oc.post_id left join {$this->table3} as ov on oc.candidate_id=ov.candidate_id  where (op.post_id,ov.vote) in (Select p.post_id,max(v.vote) FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id  group by p.post_id)";
+            $qry="Select op.post_id,oc.candidate_id as 'max_candidate_id',ov.vote from {$this->table1} as oc inner join {$this->table2} as op on op.post_id=oc.post_id left join {$this->table3} as ov on oc.candidate_id=ov.candidate_id  where (op.post_id,ov.vote) in (Select p.post_id,max(v.vote) FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id  group by p.post_id) order by ov.last_voted_on";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->execute();
             $res=$qry_prepare->get_result();
@@ -98,7 +98,7 @@
         public function showBallotAll()
         {
             try{
-            $qry="SELECT c.*,p.*,v.vote FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id ORDER BY p.post_id,v.vote DESC";
+            $qry="SELECT c.*,p.*,v.vote FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id ORDER BY p.post_id,v.vote DESC,v.last_voted_on DESC";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->execute();
             $res=$qry_prepare->get_result();

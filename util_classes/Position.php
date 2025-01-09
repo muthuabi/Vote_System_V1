@@ -113,6 +113,10 @@ class Position
             $qry_prepare = $this->conn->prepare($qry);
             $qry_prepare->bind_param("i", $id);
             $qry_prepare->execute();
+            if($this->conn->affected_rows>0)
+                $this->error=null;
+            else
+                throw new Exception("No Rows Affected");
             return $this->conn->affected_rows;
         } catch (Exception $e) {
             echo $e->getMessage();

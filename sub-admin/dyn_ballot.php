@@ -80,12 +80,12 @@
                     }
 
                     let poll_status = data.poll_status;
-                    document.querySelectorAll('.unopposed').forEach(element => {
+                    document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
                         element.style.display = 'none';
                     })
                     if (poll_status == "ended" || poll_status=="not_started") {
                         document.querySelector("#live").innerHTML=("Polling "+poll_status).toUpperCase();
-                        document.querySelectorAll('.unopposed').forEach(element => {
+                        document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
                             element.style.display = 'table-row';
                         })
                         document.querySelectorAll("#vote_status").forEach(element => {
@@ -162,6 +162,9 @@
         setInterval(()=>{
             fetch_ballot();
         },3000);
+        // setInterval(()=>{
+        //     location.reload();
+        // },60000);
     });
 </script>
 
