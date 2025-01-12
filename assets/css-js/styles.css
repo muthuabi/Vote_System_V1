@@ -802,6 +802,24 @@ footer
     transform: translateY(3px);
   }
 }
+@keyframes vote-status-blink
+{
+  0%{
+    opacity:100%;
+  }
+  25%{
+    opacity:75%;
+  }
+  50%{
+    opacity:30%;
+  }
+  75%{
+    opacity:75%;
+  }
+  100%{
+    opacity:100%;
+  }
+}
 /* #vote_data
 {
   overflow: hidden;
@@ -809,15 +827,14 @@ footer
 #vote_status.up_vote
 {
   /* color:green; */
-  animation: anime-up-vote 1.5s linear infinite;
-  
-  /* animation: anime-blink 2s linear infinite; */
+  /*animation: anime-up-vote 1.5s linear infinite;*/
+   animation: vote-status-blink 2s linear infinite; 
 }
 #vote_status.down_vote
 {
   /* color:red; */
-  animation: anime-down-vote 1.5s linear infinite;
-  /* animation: anime-blink 2s linear infinite; */
+ /* animation: anime-down-vote 1.5s linear infinite;*/
+   animation: vote-status-blink 2s 1s linear infinite; 
 }
 #ballot_all tr:has(#vote_status[class='up_vote'])
 {
@@ -1067,6 +1084,11 @@ footer
     font-size: inherit;
     font-family: inherit;
     color: inherit;
+  }
+  #vote_status
+  {
+    opacity:100%;
+    color:black;
   }
   /* #ballot_all tr:has(#vote_status[class='down_vote'])
   {
