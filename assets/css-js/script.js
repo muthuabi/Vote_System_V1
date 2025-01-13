@@ -123,6 +123,38 @@ document.addEventListener("DOMContentLoaded",(event)=>{
         init_toast('Connection Offline');
         // init_toast('Connection Offline',"my_toast_offline_user");
 	})
+    // const elems=document.querySelectorAll(".content-wrapper,.main-card-container");
+    const elems=document.querySelectorAll(".content-wrapper");
+    function enablefullscreen(elem)
+    {
+        if(document.fullscreenElement)
+        {
+            if(document.exitFullscreen)
+            {
+                document.exitFullscreen();
+                //localStorage.setItem("isFullscreen","false");
+            }
+        }
+        else
+        {   
+            if(elem.requestFullscreen)
+            {
+                elem.requestFullscreen();
+                elem.style.backgroundColor='white';
+                elem.style.color='black';
+                //localStorage.setItem("isFullscreen","true");
+            }
+        }
+    }
+    elems.forEach(element=>{
+
+        console.log(element);
+        element.addEventListener("dblclick",(e)=>{
+            //console.log(e.target.className);
+            if(e.target.className==element.className)
+                enablefullscreen(element)
+        });
+    })
     
 })
 window.history.replaceState(null,null,window.location.href);
