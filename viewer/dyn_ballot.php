@@ -1,6 +1,8 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,6 @@
     <script src='../assets/css-js/script.js'></script>
     <script src="../assets/css-js/head_script.js"></script> -->
 </head>
-
 <body>
     <header>
         <?php include_once('includes/navbar.php') ?>

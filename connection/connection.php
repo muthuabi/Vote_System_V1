@@ -7,7 +7,7 @@ Started 10 Days Before the 2024-25 Academic Year Election.
 $academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
-    private $db_host='localhost';
+    private $db_host='127.0.0.1';
     private $db_user='root';
     private $db_password='';
     private $db_dbase='sxc_election';
@@ -18,8 +18,8 @@ class Connection
         try{
         // If any error occurs regarding Database Connection failure
         // Comment the Below two Lines of Codes
-		$this->db_user=base64_decode("bXV0aHVhYmk=");
-		$this->db_password=base64_decode("TXV0aHUqMTIz");
+		// $this->db_user=base64_decode("bXV0aHVhYmk=");
+		// $this->db_password=base64_decode("TXV0aHUqMTIz");
         $this->conn=new mysqli($this->db_host,$this->db_user,$this->db_password,$this->db_dbase);
         if($this->conn->connect_error)
             throw new Exception('Database Connection Failed');
