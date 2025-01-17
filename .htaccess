@@ -14,3 +14,5 @@ php_value post_max_size 50M
 
 # Allow PHP to process .html files
 # AddType text/html .html
+
+php_value date.timezone "Asia/Kolkata"

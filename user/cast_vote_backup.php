@@ -46,10 +46,7 @@
             header('location:index.php');
         }
         try {
-            // print_r($_SERVER);
 
-            
-            echo $vfname;
             $valid_gender = ['M', 'F'];
             $valid_shift = ['Shift-I', 'Shift-II'];
             if (!isset($_SESSION['user_select'])) {
@@ -75,17 +72,8 @@
 
                 if($data=$poll->get_status($academic_year))
                 {
-                    
                     if($data['poll_status']=='ended')
-                    {
-                        // $vfname='loc_vs_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").substr(time(),-3).'.JSON';
-                        // if(isset($_GET['loc_vs']))
-                        // {
-                        //     $loc="../admin/loc_vs/$vfname";
-                        //     echo $loc;
-                        // }
                         die("<center><b>Poll Ended</b></center>");
-                    }
                 }
                 else
                     die("<center><b>Poll Not Started Yet! Refresh After Announcement from Officials</b></center>");
@@ -229,27 +217,5 @@
         </div>
     </footer>
 </body>
-<script>
-    let ldata=<?php echo json_encode($_SESSION);?>;
-    if(!localStorage.getItem("vote_data"))
-        localStorage.setItem("vote_data",JSON.stringify({}));
-    Object.keys(ldata).forEach(el=>{
-        if(!(el=="user_select" || el=="init" || el=="admin" || el=="admin_name" || el=="admin_role" || el=="admin_email"))
-        {
-           if(ldata[el]!="Not_Voted")
-           {
-                sdata=JSON.parse(localStorage.getItem("vote_data"));
-                if(!sdata[el])
-                    sdata[el]={};
-                if(!sdata[el][ldata[el].candidate_regno])
-                    sdata[el][ldata[el].candidate_regno]=1;
-                else
-                    sdata[el][ldata[el].candidate_regno]+=1;
-                localStorage.setItem("vote_data",JSON.stringify(sdata));
 
-           }
-        }
-
-    })
-</script>
 </html>
