@@ -210,7 +210,7 @@ nav .btn.btn-dark
   border-radius: 15px;
 }
 .main-sidebar .nav-link {
-    padding: 1rem 1rem;
+    padding: 0.9rem 1rem 0.9rem 1rem;
     color: white;
     transition: background-color 0.2s;
 }

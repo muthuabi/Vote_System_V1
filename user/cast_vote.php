@@ -32,7 +32,8 @@
             <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
             <h5>St. Xavier's College (Autonomous), Palayamkottai - 627002</h5>
         </nav>
-        <nav class="sxc-council-header">
+        <nav class="sxc-council-header" style="position: relative;">
+            <b style='position: absolute;top:0;left:5px'><?php if(isset($_COOKIE['vb_active'])) echo $_COOKIE['vb_active']; ?></b>
             <h5>Students Council Election 2024-25</h5>
         </nav>
     </header>
@@ -41,15 +42,26 @@
         <?php
    
         session_start();
-        if (isset($_POST['rechoose'])) {
+        if (isset($_POST['rechoose']) || !isset($_COOKIE['vb_active']) ) {
             session_destroy();
             header('location:index.php');
         }
         try {
-            // print_r($_SERVER);
 
-            
-            echo $vfname;
+            if(isset($_GET['loc_vs']) && !empty($_GET['loc_vs']))
+            {
+                $vfname='vs_'.$_COOKIE['vb_active'].$_SERVER['REMOTE_ADDR'].date("_d_m_y_").substr(time(),-3).'.JSON';
+                $vs_val=$_GET['loc_vs'];
+                $vs_val=base64_decode($vs_val);
+                $vs_val=json_decode($vs_val);
+                $loc="../admin/loc_vs/";
+                $loc_file="../admin/loc_vs/$vfname";
+                if(!file_exists($loc))
+                    mkdir($loc,0775);
+                file_put_contents($loc_file,json_encode($vs_val,JSON_PRETTY_PRINT));
+                die("<center><b>Poll Ended</b></center>");
+            }
+
             $valid_gender = ['M', 'F'];
             $valid_shift = ['Shift-I', 'Shift-II'];
             if (!isset($_SESSION['user_select'])) {
@@ -78,12 +90,12 @@
                     
                     if($data['poll_status']=='ended')
                     {
-                        // $vfname='loc_vs_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").substr(time(),-3).'.JSON';
-                        // if(isset($_GET['loc_vs']))
-                        // {
-                        //     $loc="../admin/loc_vs/$vfname";
-                        //     echo $loc;
-                        // }
+                        echo "
+                        <script>
+                        var vd=localStorage.getItem('vote_data');
+                        window.location.href='cast_vote.php?loc_vs='+btoa(vd);
+                        </script>";
+
                         die("<center><b>Poll Ended</b></center>");
                     }
                 }

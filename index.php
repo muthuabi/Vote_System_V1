@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +21,16 @@
         <nav class="sxc-council-header">
             <h5>Students Council Election 2024-25</h5>
         </nav>
+        <?php
+            include_once("./connection/connection.php");
+            include_once("./util_classes/VBooth.php");
+            if(isset($_COOKIE['vb_active']))
+            {
+                $name=$_COOKIE['vb_active'];
+                $vb->update_status('inactive',0,$name);
+                setcookie('vb_active','',-1);
+            } 
+        ?>
     </header>
     <main id="home">
         <div class="home-box">

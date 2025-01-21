@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded',(main)=>{
 
-const tdata=document.querySelectorAll("#ballot_table tr:not(:first-child)");
+const tdata=document.querySelectorAll("#ballot_table tr");
 const search=document.getElementById("input-search");
 const searchbtn=document.getElementById("search-btn");
 

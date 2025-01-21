@@ -117,7 +117,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="post_status">Shift</label>
+                                <label for="post_status">Status</label>
                                 <select name='post_status' id='post_status' class='form-control'>
                                     <option value='nocontest' <?php if (isset($value) && ($value['post_status'] == 'nocontest')) echo 'selected'; ?>>No Contest</option>
                                     <option value='opposed' <?php if (isset($value) && ($value['post_status'] == 'opposed')) echo 'selected'; ?>>Opposed</option>
@@ -140,7 +140,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="submit" form="add-edit-position" <?php if (isset($value)) echo " name='edit_position' value='edit_position' >Update";
-                                                                                                else echo " name='add_position' value='add_position' >Submit"; ?></button>
+                            else echo " name='add_position' value='add_position' >Submit"; ?></button>
                     </div>
                 </div>
             </div>
