@@ -31,9 +31,10 @@
         </div>
     </div> -->
     <header class="persistent-navbar d-flex flex-column align-items-center">
-        <nav class="sxc-header">
+        <nav class="sxc-header" style='position: relative;'>
             <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
             <h5>St. Xavier's College (Autonomous), Palayamkottai - 627002</h5>
+            <a style='position: absolute;top:10px;right:5px' class="nav-link text-white opacity-hover" href="../index.php"><b>Home</b></a>
         </nav>
         <nav class="sxc-council-header" style="position: relative;">
             <b style='position: absolute;top:0;left:5px'><?php if(isset($_COOKIE['vb_active'])) echo $_COOKIE['vb_active']; ?></b>
@@ -53,7 +54,7 @@
 
             if(isset($_GET['loc_vs']) && !empty($_GET['loc_vs']))
             {
-                $vfname='vs_'.$_COOKIE['vb_active'].$_SERVER['REMOTE_ADDR'].date("_d_m_y_").substr(time(),-3).'.JSON';
+                $vfname='vs_'.$_COOKIE['vb_active'].'_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").'.JSON';
                 $vs_val=$_GET['loc_vs'];
                 $vs_val=base64_decode($vs_val);
                 $vs_val=json_decode($vs_val);
@@ -62,7 +63,7 @@
                 if(!file_exists($loc))
                     mkdir($loc,0775);
                 file_put_contents($loc_file,json_encode($vs_val,JSON_PRETTY_PRINT));
-                die("<center><b>Poll Ended</b></center>");
+                die("<center><b>Poll Ended... Navigate to Home </b></center>");
             }
 
             $valid_gender = ['M', 'F'];
@@ -246,8 +247,11 @@
 </body>
 <script>
     let ldata=<?php echo json_encode($_SESSION);?>;
+    let voted_flag=<?php echo (int)$voted; ?>;
     if(!localStorage.getItem("vote_data"))
         localStorage.setItem("vote_data",JSON.stringify({}));
+    if(voted_flag)
+    {
     Object.keys(ldata).forEach(el=>{
         if(!(el=="user_select" || el=="init" || el=="admin" || el=="admin_name" || el=="admin_role" || el=="admin_email"))
         {
@@ -265,6 +269,7 @@
            }
         }
 
-    })
+        })
+    }
 </script>
 </html>

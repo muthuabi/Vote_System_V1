@@ -30,6 +30,9 @@
             if(isset($_COOKIE['vb_active']))
             {
                 $name=$_COOKIE['vb_active'];
+                $data=$vb->get_status(0,$name);
+                $status=$data['status'];
+                if($status!='restricted')
                 $vb->update_status('inactive',0,$name);
                 setcookie('vb_active','',-1);
             } 

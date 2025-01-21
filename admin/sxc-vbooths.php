@@ -172,6 +172,33 @@
         } else {
             echo "<center><b>No Data Available</b></center>";
         }
+        $dir="./loc_vs";
+        if(is_dir($dir))
+        {
+            $files=scandir($dir);
+            $f_count=count($files);
+            if(($f_count-2)>0)
+            {
+            echo "<br><b>Local Vote Booth Files</b>";
+            echo "<div class='table-responsive'><table class='table my-2 sxc-positions'>
+            <thead><tr><th>SNo</th><th>File Name</th><th>File Type</th><th>File Modified</th><th colspan='2'>File Actions</th></tr></thead><tbody>";
+            for($i=2;$i<$f_count;$i++)
+            {
+                $floc=$dir.'/'.$files[$i];
+                $fname=pathinfo($floc,PATHINFO_FILENAME);
+                $fext=pathinfo($floc,PATHINFO_EXTENSION);
+                $mtime=filemtime($floc);
+                $sno=$i-1;
+                echo "<tr><td>$sno</td><td>$fname</td><td>$fext</td><td>".date('d-m-Y h:i:s',$mtime)."</td><td><a class='btn btn-success' target='blank' href='$floc'>View</a></td><td><a class='btn btn-warning' href='$floc' download>Download</a></td></tr>";
+            }
+            echo "</tbody></table></div>";
+            }
+            else
+            {
+                echo "<center><b>No Files Available</b></center>";
+            }   
+        }
+
         ?>
     </main>
 
