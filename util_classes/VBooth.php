@@ -1,5 +1,5 @@
 <?php
-    include_once("../connection/connection.php");
+    @include_once("../connection/connection.php");
     error_reporting(E_ALL);
     class VBooth
     {
