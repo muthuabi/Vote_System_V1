@@ -1,6 +1,6 @@
 <?php
     @include_once("../connection/connection.php");
-    error_reporting(E_ALL);
+    //error_reporting(E_ALL);
     class VBooth
     {
         private $conn;
