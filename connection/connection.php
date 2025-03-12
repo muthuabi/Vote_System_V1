@@ -7,7 +7,10 @@ Started 10 Days Before the 2024-25 Academic Year Election.
 $academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
-    private $db_host='localhost';
+    private $db_host='127.0.0.1';
+  /* 
+   In mobile Termux the host expects the Local Ip so i changed as direct ip ... in lap/system we can use localhost directly 
+*/
     private $db_user='root';
     private $db_password='';
     private $db_dbase='sxc_election';
