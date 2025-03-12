@@ -173,23 +173,30 @@
             echo "<center><b>No Data Available</b></center>";
         }
         $dir="./loc_vs";
+        if(isset($_GET['d_floc']) && !empty(trim($_GET['d_floc'])))
+        {
+            unlink($_GET['d_floc']);
+        }
         if(is_dir($dir))
         {
             $files=scandir($dir);
             $f_count=count($files);
-            if(($f_count-2)>0)
+            if(($f_count-3)>0)
             {
             echo "<br><b>Local Vote Booth Files</b>";
             echo "<div class='table-responsive'><table class='table my-2 sxc-positions'>
-            <thead><tr><th>SNo</th><th>File Name</th><th>File Type</th><th>File Modified</th><th colspan='2'>File Actions</th></tr></thead><tbody>";
+            <thead><tr><th>SNo</th><th>File Name</th><th>File Type</th><th>File Modified</th><th colspan='3'>File Actions</th></tr></thead><tbody>";
             for($i=2;$i<$f_count;$i++)
             {
                 $floc=$dir.'/'.$files[$i];
                 $fname=pathinfo($floc,PATHINFO_FILENAME);
                 $fext=pathinfo($floc,PATHINFO_EXTENSION);
+                if($fext=="php")
+                    continue;
                 $mtime=filemtime($floc);
                 $sno=$i-1;
-                echo "<tr><td>$sno</td><td>$fname</td><td>$fext</td><td>".date('d-m-Y h:i:s',$mtime)."</td><td><a class='btn btn-success' target='blank' href='$floc'>View</a></td><td><a class='btn btn-warning' href='$floc' download>Download</a></td></tr>";
+                echo "<tr><td>$sno</td><td>$fname</td><td>$fext</td><td>".date('d-m-Y h:i:s',$mtime)."</td><td><a class='btn btn-success' target='blank' href='$floc'>View</a></td><td><a class='btn btn-warning' href='$floc' download>Download</a></td>
+                <td><form><button type='submit' name='d_floc' value='$floc' class='btn btn-danger'>Delete</button><form></td></tr>";
             }
             echo "</tbody></table></div>";
             }

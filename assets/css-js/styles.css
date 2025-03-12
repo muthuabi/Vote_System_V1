@@ -188,8 +188,12 @@ nav .navbar-brand {
     color: white;
     padding: 0;
     background-color: #600000;
+    overflow: -moz-scrollbars-none;
 }
-
+.offcanvas-body::-webkit-scrollbar
+{
+  display:none;
+}
 .sidebar-inner-card {
     display: flex;
     gap: 0.5rem;

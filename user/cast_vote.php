@@ -61,7 +61,7 @@
                 $loc="../admin/loc_vs/";
                 $loc_file="../admin/loc_vs/$vfname";
                 if(!file_exists($loc))
-                    mkdir($loc,0775);
+                    mkdir($loc,0777);
                 file_put_contents($loc_file,json_encode($vs_val,JSON_PRETTY_PRINT));
                 die("<center><b>Poll Ended... Navigate to Home </b></center>");
             }

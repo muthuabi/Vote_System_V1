@@ -25,8 +25,8 @@
             <h5>Students Council Election 2024-25</h5>
         </nav>
         <?php
-            include_once("./connection/connection.php");
-            include_once("./util_classes/VBooth.php");
+            @include_once("./connection/connection.php");
+            @include_once("./util_classes/VBooth.php");
             if(isset($_COOKIE['vb_active']))
             {
                 $name=$_COOKIE['vb_active'];
