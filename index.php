@@ -38,7 +38,7 @@
             } 
         ?>
     </header>
-    <main id="home">
+    <main id="home" class="footer-up">
         <div class="home-box">
             <h2 class="head-name head-role">Welcome to SXC Vote System!</h2>
            
@@ -46,7 +46,7 @@
                 <img src="./assets/images/other_images/vote-success-ballot.gif" style="width:120px;height:120px">
             <a href="user/" class="btn btn-lg btn-dark vote_btn px-5">Go to Vote</a>
             </div>
-            <a href="admin/login.php" class="btn btn-dark opacity-hover" style='position:fixed;bottom:0.5rem'>Admin</a>
+            <a href="admin/login.php" class="btn btn-dark opacity-hover" style='position:fixed;bottom:0.5rem;z-index:100000'>Admin</a>
         </div>
     </main>
     <footer>

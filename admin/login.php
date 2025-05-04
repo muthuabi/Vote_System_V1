@@ -26,7 +26,7 @@
             <h5>Students Council Election 2024-25</h5>
         </nav>
     </header>
-    <div class="container">
+    <main class="container footer-up">
         <?php
         include_once('../util_classes/Admin.php');
         session_start();
@@ -100,7 +100,7 @@
               
             </form>
         </div>
-    </div>
+    </main>
     <footer>
             <div class="footer-head">
                 <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>

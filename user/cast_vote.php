@@ -121,7 +121,7 @@
         ?>
     </header>
 
-    <main class="main-card-container ">
+    <main class="main-card-container footer-up">
 
 
     <?php
