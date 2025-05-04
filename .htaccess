@@ -16,3 +16,27 @@ php_value post_max_size 50M
 # AddType text/html .html
 
 php_value date.timezone "Asia/Kolkata"
+
+# Block direct browser access to PHP files inside util_api or util_classes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Only block if the request comes directly (not as an include)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*(util_api|util_classes|db|connection)/.*\.(php|sql)\ HTTP/
+    RewriteRule .* - [F,L]
+</IfModule>
+
+#All folders won't serve the Index List
+Options -Indexes
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to phpMyAdmin from external sources
+    RewriteCond %{REQUEST_URI} ^/phpMyAdmin/ [NC]
+    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+    RewriteRule ^.*$ - [F,L]
+</IfModule>
+
+

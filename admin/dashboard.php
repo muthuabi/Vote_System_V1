@@ -22,6 +22,93 @@
         ?>
    </header>
     <main class='content-wrapper'>
+        <div class="lock_wrapper">
+     <style>
+        .lock_wrapper {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: fit-content;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            bottom:-4.5rem;
+            cursor: pointer;
+            position: fixed;
+            opacity: 70%;
+            transition: bottom 0.5s,opacity 0.5s;
+
+        }
+        .lock_wrapper:hover
+        {
+            bottom: 0;
+            opacity: 100%;
+        }
+        .lock_wrapper b
+        {
+            font-size: 20px;
+        }
+        summary{
+            margin: 5px;
+        }
+    </style>
+
+        <?php
+            function getPhpMyAdminPath($custom = ''): string {
+                if (!empty($custom)) return rtrim($custom, "/\\") . '/.htaccess';
+                $isWindows = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+                return $isWindows ? "C:/xampp/phpMyAdmin/.htaccess" : "/opt/lampp/phpmyadmin/.htaccess";
+            }
+
+            function securePhpMyAdminAccess($customPath = ''): bool {
+                $path = getPhpMyAdminPath($customPath);
+                $content = <<<HTACCESS
+            <IfModule mod_authz_core.c>
+                Require all denied
+            </IfModule>
+
+            <IfModule !mod_authz_core.c>
+                Deny from all
+            </IfModule>
+            HTACCESS;
+                return file_put_contents($path, $content) !== false;
+            }
+
+        function releasePhpMyAdminAccess($customPath = ''): bool {
+            $path = getPhpMyAdminPath($customPath);
+            return file_exists($path) ? file_put_contents($path, '') !== false : true;
+        }
+
+        // Result message
+        $msg = "";
+        $customPath = trim($_POST['pma_path'] ?? '');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['secure_phpmyadmin'])) {
+                $msg = securePhpMyAdminAccess($customPath) ? "phpMyAdmin Locked" : "Failed to Lock";
+            } elseif (isset($_POST['release_phpmyadmin'])) {
+                $msg = releasePhpMyAdminAccess($customPath) ? "phpMyAdmin Unlocked" : "Failed to Unlock";
+            }
+        }
+        ?>
+    <form action="" method="post" class="lock_form">
+        <details>
+        <summary><b>PhpMyAdmin</b></summary>
+        <div class='form-group mb-2'>
+            <label for="pma_path">Path</label>
+            <input type="text" class='form-control' name="pma_path" placeholder="Eg: C:/xampp/phpMyAdmin" value="<?php echo htmlspecialchars($customPath); ?>">
+        </div>
+        </details>
+        <div>
+            <button type="submit" name="secure_phpmyadmin" class="btn btn-dark">Lock</button>
+            <button type="submit" name="release_phpmyadmin" class="btn btn-light">Unlock</button>
+        </div>
+        <div class="status">
+            <?php if (!empty($msg)) echo $msg; ?>
+        </div>
+    </form>
+</div>
+
+
         <form action='' method='post' class="poll_form">
         <b>Polling Actions</b>
             <div>
@@ -68,7 +155,7 @@
         const ballot_post = document.getElementById("dashboard_post_cards");
         function fetch_ballot() {
             $.ajax({
-                url: '../util_classes/Ballot.php?ballot=BALLOT_POSITION_GROUP',
+                url: '../util_api/ballot_api.php?ballot=BALLOT_POSITION_GROUP',
                 method: 'GET',
                 dataType: 'json'
             })

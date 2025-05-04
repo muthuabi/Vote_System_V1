@@ -159,7 +159,7 @@
             </thead>
             <tbody>";
             for ($i = 0; $i < count($data); $i++) {
-                echo "<tr><td>{$data[$i]['vb_id']}</td><td style='text-transform:uppercase'>{$data[$i]['vb_name']}</td><td>{$data[$i]['vb_location']}</td><td>{$data[$i]['vb_incharge']}</td><td>{$data[$i]['vb_status']}</td><td>{$data[$i]['updatedOn']}</td>
+                echo "<tr><td>{$data[$i]['vb_id']}</td><td >{$data[$i]['vb_name']}</td><td>{$data[$i]['vb_location']}</td><td>{$data[$i]['vb_incharge']}</td><td>{$data[$i]['vb_status']}</td><td>{$data[$i]['updatedOn']}</td>
                 <td><button class='btn btn-warning' type='submit' name='edit' value={$data[$i]['vb_id']} form='form_temp'>Edit</button></td><td><button class='btn btn-danger' type='submit' name='delete' value={$data[$i]['vb_id']} form='form_temp'>Delete</button></td></tr>";
             }
 

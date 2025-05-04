@@ -30,7 +30,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", (main) => {
-            const url='../util_classes/Ballot.php?ballot=BALLOT_POST_ID&post_id=<?php echo $post_id; ?>';
+            const url='../util_api/ballot_api.php?ballot=BALLOT_POST_ID&post_id=<?php echo $post_id; ?>';
             const ballot_post = document.getElementById("ballot_post_id");
             function fetch_ballot() {
                 $.ajax({

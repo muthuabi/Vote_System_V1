@@ -31,7 +31,7 @@
         const ballot_post = document.getElementById("dashboard_post_cards");
         function fetch_ballot() {
             $.ajax({
-                url: '../util_classes/Ballot.php?ballot=BALLOT_POSITION_GROUP',
+                url: '../util_api/ballot_api.php?ballot=BALLOT_POSITION_GROUP',
                 method: 'GET',
                 dataType: 'json'
             })

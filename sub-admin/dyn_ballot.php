@@ -54,7 +54,7 @@
 
             <thead >
                 <tr>
-                    <th>Total Votes Polled - <b id="total_votes_polled"></b></th>
+                    <th class="total_votes_th">Total Votes Polled - <b id="total_votes_polled"></b></th>
                 </tr>
             </thead>
             <tbody id="ballot_all">
@@ -71,7 +71,7 @@
 
         function fetch_ballot() {
             $.ajax({
-                    url: '../util_classes/Ballot.php?ballot=BALLOT_ALL',
+                    url: '../util_api/ballot_api.php?ballot=BALLOT_ALL',
                     method: 'GET',
                     dataType: 'json'
                 })
