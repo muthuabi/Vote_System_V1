@@ -1,8 +1,10 @@
 <!-- NOT IN USE -->
 <?php 
+ob_start();
 header("HTTP/1.1 403 Access Forbidden");
 exit; 
 ?>
+<!--
 <div class="lock_wrapper">
      <style>
         .lock_wrapper {
@@ -113,3 +115,4 @@ exit;
     </form>
 </div>
 
+-->
