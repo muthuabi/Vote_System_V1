@@ -31,12 +31,13 @@
             {
                 $name=$_COOKIE['vb_active'];
                 $data=$vb->get_status(0,$name);
-                if($data && isset($data['status'])){
-                $status=$data['status'];
+                //print_r($data);
+                //if($data && isset($data['vb_status'])){
+                $status=$data['vb_status'];
                 if($status!='restricted')
                 $vb->update_status('inactive',0,$name);
-                }
                 setcookie('vb_active','',-1);
+                // }
             } 
         ?>
     </header>
