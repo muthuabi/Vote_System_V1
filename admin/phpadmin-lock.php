@@ -1,4 +1,3 @@
-<!-- NOT IN USE -->
 <?php 
 ob_start();
 header("HTTP/1.1 403 Access Forbidden");

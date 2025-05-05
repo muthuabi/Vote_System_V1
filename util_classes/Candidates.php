@@ -81,6 +81,8 @@
                 return null;
             }
         }
+        /*
+        OLD ONE
         public function fileUpload($file)
         {
             try
@@ -101,6 +103,32 @@
                 return null;
             }
         }
+        */
+        public function fileUpload($file)
+        {
+            try
+            {
+                $target = $this->file_target;
+                if (!file_exists($target)) mkdir($target, 0777, true);
+
+                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $unique_name = uniqid('candidate_', true) . '.' . $ext;
+                $fname = $target . $unique_name;
+
+                if (move_uploaded_file($file['tmp_name'], $fname))
+                {
+                    $this->image_url = $fname;
+                    return $this->image_url;
+                }
+            }
+            catch(Exception $e)
+            {
+                $this->error = $e;
+                return null;
+            }
+        }
+        /*
+        OLD ONE
         public function fileDelete($image_delete_url)
         {
             try{
@@ -118,7 +146,24 @@
             {
                 return false;
             }
+        }*/
+        public function fileDelete($image_delete_url)
+        {
+        try {
+            if (file_exists($image_delete_url)) {
+            rename($image_delete_url, "trashed_" . time() . "_" . basename($image_delete_url));
+                    return true;
+                } else {
+                    throw new Exception('File Deletion Failed');
+                }
+            } catch (Exception $e) {
+                return false;
+            }
         }
+
+
+        /*
+        OLD ONE
         public function fileUpdate($file)
         {
             try
@@ -140,7 +185,32 @@
                 return null;
             }
 
+        }*/
+
+        public function fileUpdate($file)
+        {
+            try
+            {
+                $target = $this->file_target;
+                if (!file_exists($target)) mkdir($target, 0777, true);
+
+                $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $unique_name = uniqid('candidate_', true) . '.' . $ext;
+                $fname = $target . $unique_name;
+
+                if (move_uploaded_file($file['tmp_name'], $fname))
+                {
+                    $this->image_url = $fname;
+                    return $this->image_url;
+                }
+            }
+            catch(Exception $e)
+            {
+                $this->error = $e;
+                return null;
+            }
         }
+
         public function insert()
         {
            

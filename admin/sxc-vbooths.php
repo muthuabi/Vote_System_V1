@@ -136,6 +136,7 @@
                 </div>
             </div>
         </div>
+       
         <form id='form_temp' method="post">
 
         </form>
@@ -170,7 +171,7 @@
         </table>
         </div>";
         } else {
-            echo "<center><b>No Data Available</b></center>";
+            echo "<center><b>No Data Available</b></center> <hr/>";
         }
         $dir="./loc_vs";
         if(isset($_GET['d_floc']) && !empty(trim($_GET['d_floc'])))

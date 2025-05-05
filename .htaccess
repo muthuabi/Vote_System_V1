@@ -22,7 +22,7 @@ php_value date.timezone "Asia/Kolkata"
     RewriteEngine On
 
     # Only block if the request comes directly (not as an include)
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*(util_api|util_classes|db|connection)/.*\.(php|sql)\ HTTP/
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*(util_api|util_classes|db|connection|assets)/.*\.(php|sql)\ HTTP/
     RewriteRule .* - [F,L]
 </IfModule>
 

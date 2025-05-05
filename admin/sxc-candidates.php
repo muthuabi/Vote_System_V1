@@ -180,7 +180,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="post">Position</label>
-                                <select name='post_id' class="form-control" id='post_id'>
+                                <select required name='post_id' class="form-control" id='post_id'>
                                     <?php
                                     $pos_result = $pos->readAll();
                                     if ($pos_data = $pos_result['data']) {

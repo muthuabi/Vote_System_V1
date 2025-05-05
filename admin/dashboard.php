@@ -25,7 +25,7 @@
         <div class="lock_wrapper">
      <style>
         .lock_wrapper {
-            background-color: white;
+
             padding: 30px;
             border-radius: 10px;
             max-width: fit-content;
