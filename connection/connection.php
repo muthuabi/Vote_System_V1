@@ -25,8 +25,12 @@ class Connection
 		$this->db_user=base64_decode("bXV0aHVhYmk=");
 		$this->db_password=base64_decode("TXV0aHUqMTIz");
         $this->conn=new mysqli($this->db_host,$this->db_user,$this->db_password,$this->db_dbase);
-        if($this->conn->connect_error)
-            throw new Exception('Database Connection Failed');
+            if($this->conn->connect_error)
+            {
+                $this->conn=new mysqli($this->db_host,'root','',$this->db_dbase);
+                if($this->conn->connect_error)
+                    throw new Exception('Database Connection Failed');
+            }
         }
         catch(Exception $e)
         {

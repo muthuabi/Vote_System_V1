@@ -40,7 +40,7 @@
             }
         </style> -->
     </header>
-    <div class="container">
+    <main class="container footer-up">
         <?php 
             session_start();
             include_once("../util_classes/VBooth.php");
@@ -118,7 +118,7 @@
                 </center>");
             }
         ?>
-    </div>
+    </main>
     <footer>
             <div class="footer-head">
                 <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>

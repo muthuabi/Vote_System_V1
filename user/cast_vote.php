@@ -121,7 +121,7 @@
         ?>
     </header>
 
-    <main class="main-card-container footer-up">
+    <!-- <main class="main-card-container footer-up"> -->
 
 
     <?php
@@ -165,7 +165,7 @@
                         $count = count($candidates);
                         if($count<=0)
                             echo "<center><b>Contact Admin!</b><br><b>This Post should be nocontest if no candidates.</b></center>";
-                        echo "<div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
+                        echo "<main class='main-card-container footer-up'><div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
                         for ($j = 0; $j < count($candidates); $j++) {
                             echo "<form class='card candidate-card' action='' method='post' id='can{$candidates[$j]['candidate_id']}' >
                                 <div class='card-img-container'>

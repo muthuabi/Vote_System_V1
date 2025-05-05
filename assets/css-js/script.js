@@ -37,6 +37,7 @@ window.addEventListener("resize",(e)=>{
 //     location.reload();
 // }
 document.addEventListener("DOMContentLoaded",(event)=>{
+
     
     const password_types=document.querySelectorAll("input[type='password']");
     password_types.forEach(element=>{
@@ -154,9 +155,64 @@ document.addEventListener("DOMContentLoaded",(event)=>{
             if(e.target.className==element.className || e.target.id=='common_post')
                 enablefullscreen(element)
         });
-    })
-    
-})
+    });   
+    function fullScreenConstraint() {
+          // Avoid duplicates
+          if (document.fullscreenElement) return;
+          if (document.getElementById('fullscreen-overlay')) return;
+
+          // Create overlay
+          const overlay = document.createElement('div');
+          overlay.id = 'fullscreen-overlay';
+          overlay.style.position = 'fixed';
+          overlay.style.top = 0;
+          overlay.style.left = 0;
+          overlay.style.width = '100vw';
+          overlay.style.height = '100vh';
+          overlay.style.background = 'rgba(0, 0, 0, 0.85)';
+          overlay.style.color = '#fff';
+          overlay.style.display = 'flex';
+          overlay.style.flexDirection = 'column';
+          overlay.style.justifyContent = 'center';
+          overlay.style.alignItems = 'center';
+          overlay.style.zIndex = 9999;
+
+          // Message
+          const msg = document.createElement('p');
+          msg.textContent = 'You must continue in fullscreen mode.';
+          msg.style.fontSize = '1.5rem';
+          msg.style.marginBottom = '20px';
+
+          // Button
+          const btn = document.createElement('button');
+          btn.textContent = 'Continue';
+          btn.style.padding = '10px 20px';
+          btn.style.fontSize = '1rem';
+          btn.style.cursor = 'pointer';
+
+          btn.onclick = async () => {
+            try {
+              await document.documentElement.requestFullscreen();
+              overlay.remove();
+            } catch (err) {
+              alert('Failed to enter fullscreen. Please try again.');
+              console.error(err);
+            }
+          };
+
+          overlay.appendChild(msg);
+          overlay.appendChild(btn);
+          document.body.appendChild(overlay);
+    }
+
+    // document.addEventListener('fullscreenchange', () => {
+    //       if (!document.fullscreenElement) {
+    //         if(location.pathname.includes("/user/"))
+    //             fullScreenConstraint();
+    //       }
+    // });
+
+});
 window.history.replaceState(null,null,window.location.href);
 /*
 Vote System Project for St. Xavier's College

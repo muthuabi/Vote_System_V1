@@ -673,10 +673,16 @@ form.login_form.criteria_form .form-control
     width:50px;
     height: 50px;
 }
+body:has(main.footer-up)
+{
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+}
 main.footer-up
 {
-  margin-bottom: 6rem;
-  padding-left:0;
+  flex:1;
+  padding-left: 0;
 }
 footer
 {
@@ -686,7 +692,6 @@ footer
     padding:2rem 1rem;
     border-top: 5px solid #daa106  ;
     border-bottom: 5px solid #daa106 ;
-    position: fixed;
     bottom:0;
     width:100%;
 }
