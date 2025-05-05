@@ -47,9 +47,9 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
 (1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'b37e7d2627c468cee58d08def47b9032e877ed4c51f9f7886d13e4a5235074e4', 'admin', '2024-06-11 19:04:31', '2025-01-09 18:30:44'),
 (2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', '84bc324ff69579d9a35cf6940f44d36c36dec9b3b067efe87af20d7b0f12f7a7', 'admin', '2024-06-11 19:04:31', '2025-01-09 21:59:34'),
-(13, 'principal', 'Rev. Fr. Principal', 'sxcprince@xavierstn.edu', '69e03750027e6b1e9f95bd21d227613c0024ec799ebfb7fe281371e1153f9bda', 'viewer', '2025-01-09 19:13:52', '2025-01-13 22:56:17'),
-(14, 'someone', 'Someone', 'someone@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'sub-admin', '2025-01-09 20:12:54', '2025-01-09 20:12:54'),
-(15, 'critical_support', 'Critical Support', 'critical@gmail.com', '459b8d5fc8d05dff1b7f2305ebaa9d58d8f1bf9e5eaa2d516e48877e9cc57135', 'admin', '2025-01-11 19:04:31', '2025-01-11 00:09:45');
+(3, 'principal', 'Rev. Fr. Principal', 'sxcprince@xavierstn.edu', '69e03750027e6b1e9f95bd21d227613c0024ec799ebfb7fe281371e1153f9bda', 'viewer', '2025-01-09 19:13:52', '2025-01-13 22:56:17'),
+(4, 'someone', 'Someone', 'someone@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'sub-admin', '2025-01-09 20:12:54', '2025-01-09 20:12:54'),
+(5, 'critical_support', 'Critical Support', 'critical@gmail.com', '459b8d5fc8d05dff1b7f2305ebaa9d58d8f1bf9e5eaa2d516e48877e9cc57135', 'admin', '2025-01-11 19:04:31', '2025-01-11 00:09:45');
 
 -- --------------------------------------------------------
 
@@ -76,11 +76,11 @@ CREATE TABLE `candidates` (
 -- Dumping data for table `candidates`
 --
 
-INSERT INTO `candidates` (`candidate_id`, `regno`, `name`, `course`, `year`, `post_id`, `vote_count`, `image_url`, `shift`, `election_year`, `created_on`, `updated_on`) VALUES
-(9, '21UCS107', 'Krishnan', 'BSC COMPUTER SCIENCE', 3, 5, 0, '../assets/images/candidate_images/2025/IMG-20250105-WA0007.jpg', 'Shift-I', '2025-26', '2025-01-10 00:52:11', '2025-01-10 00:52:11'),
-(10, '21UCS109', 'Muthukrishnan  M', 'BSC COMPUTER SCIENCE', 3, 5, 0, '../assets/images/candidate_images/2025/St.Xavier’s college.png', 'Shift-I', '2025-26', '2025-01-10 00:53:34', '2025-01-10 00:53:34'),
-(11, '21UCS110', 'Someone', 'BSC MATHEMATICS', 3, 6, 0, '../assets/images/candidate_images/2025/Screenshot_2025-01-13_13-28-37.png', 'Shift-I', '2025-26', '2025-01-17 22:58:03', '2025-01-17 22:58:11'),
-(12, '21UCS100', 'Muthu Vengadesh', 'BSC ZOOLOGY', 3, 6, 0, '../assets/images/candidate_images/2025/Screenshot_2024-12-14_01-57-04.png', 'Shift-I', '2025-26', '2025-01-17 22:58:37', '2025-01-17 22:58:37');
+-- INSERT INTO `candidates` (`candidate_id`, `regno`, `name`, `course`, `year`, `post_id`, `vote_count`, `image_url`, `shift`, `election_year`, `created_on`, `updated_on`) VALUES
+-- (9, '21UCS107', 'Krishnan', 'BSC COMPUTER SCIENCE', 3, 5, 0, '../assets/images/candidate_images/2025/IMG-20250105-WA0007.jpg', 'Shift-I', '2025-26', '2025-01-10 00:52:11', '2025-01-10 00:52:11'),
+-- (10, '21UCS109', 'Muthukrishnan  M', 'BSC COMPUTER SCIENCE', 3, 5, 0, '../assets/images/candidate_images/2025/St.Xavier’s college.png', 'Shift-I', '2025-26', '2025-01-10 00:53:34', '2025-01-10 00:53:34'),
+-- (11, '21UCS110', 'Someone', 'BSC MATHEMATICS', 3, 6, 0, '../assets/images/candidate_images/2025/Screenshot_2025-01-13_13-28-37.png', 'Shift-I', '2025-26', '2025-01-17 22:58:03', '2025-01-17 22:58:11'),
+-- (12, '21UCS100', 'Muthu Vengadesh', 'BSC ZOOLOGY', 3, 6, 0, '../assets/images/candidate_images/2025/Screenshot_2024-12-14_01-57-04.png', 'Shift-I', '2025-26', '2025-01-17 22:58:37', '2025-01-17 22:58:37');
 
 -- --------------------------------------------------------
 
@@ -114,9 +114,9 @@ CREATE TABLE `polls` (
 -- Dumping data for table `polls`
 --
 
-INSERT INTO `polls` (`poll_id`, `poll_year`, `poll_status`, `created_on`) VALUES
-(1, '2024-25', 'ended', '2024-11-09 23:07:22'),
-(4, '2025-26', 'ended', '2025-01-17 19:29:35');
+-- INSERT INTO `polls` (`poll_id`, `poll_year`, `poll_status`, `created_on`) VALUES
+-- (1, '2024-25', 'ended', '2024-11-09 23:07:22'),
+-- (4, '2025-26', 'ended', '2025-01-17 19:29:35');
 
 -- --------------------------------------------------------
 
@@ -139,9 +139,9 @@ CREATE TABLE `position` (
 -- Dumping data for table `position`
 --
 
-INSERT INTO `position` (`post_id`, `post`, `description`, `post_shift`, `post_status`, `who_can_vote`, `created_at`, `updated_on`) VALUES
-(5, 'President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:17', '2025-01-11 00:53:52'),
-(6, 'Vice President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:28', '2025-01-17 22:58:51');
+-- INSERT INTO `position` (`post_id`, `post`, `description`, `post_shift`, `post_status`, `who_can_vote`, `created_at`, `updated_on`) VALUES
+-- (5, 'President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:17', '2025-01-11 00:53:52'),
+-- (6, 'Vice President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:28', '2025-01-17 22:58:51');
 
 -- --------------------------------------------------------
 
@@ -163,9 +163,9 @@ CREATE TABLE `vbooth` (
 -- Dumping data for table `vbooth`
 --
 
-INSERT INTO `vbooth` (`vb_id`, `vb_name`, `vb_status`, `vb_location`, `vb_incharge`, `createdOn`, `updatedOn`) VALUES
-(13, 'booth_01', 'active', 'Pope Auditorium', 'Krishnan', '2025-01-21 14:08:02', '2025-03-13 00:20:54'),
-(15, 'booth_02', 'active', 'St Xavier\'s College', 'Krishna Moorthy', '2025-01-21 14:15:38', '2025-03-12 23:10:33');
+-- INSERT INTO `vbooth` (`vb_id`, `vb_name`, `vb_status`, `vb_location`, `vb_incharge`, `createdOn`, `updatedOn`) VALUES
+-- (13, 'booth_01', 'active', 'Pope Auditorium', 'Krishnan', '2025-01-21 14:08:02', '2025-03-13 00:20:54'),
+-- (15, 'booth_02', 'active', 'St Xavier\'s College', 'Krishna Moorthy', '2025-01-21 14:15:38', '2025-03-12 23:10:33');
 
 -- --------------------------------------------------------
 
@@ -185,11 +185,11 @@ CREATE TABLE `votes` (
 -- Dumping data for table `votes`
 --
 
-INSERT INTO `votes` (`vote_id`, `vote`, `candidate_id`, `created_on`, `last_voted_on`) VALUES
-(15, 11, 9, '2025-01-21 21:00:35', '2025-03-13 00:20:56'),
-(16, 11, 12, '2025-01-21 21:00:39', '2025-03-12 23:27:54'),
-(17, 8, 11, '2025-01-21 21:08:33', '2025-03-13 00:14:36'),
-(18, 10, 10, '2025-01-21 21:08:42', '2025-03-13 00:14:34');
+-- INSERT INTO `votes` (`vote_id`, `vote`, `candidate_id`, `created_on`, `last_voted_on`) VALUES
+-- (15, 11, 9, '2025-01-21 21:00:35', '2025-03-13 00:20:56'),
+-- (16, 11, 12, '2025-01-21 21:00:39', '2025-03-12 23:27:54'),
+-- (17, 8, 11, '2025-01-21 21:08:33', '2025-03-13 00:14:36'),
+-- (18, 10, 10, '2025-01-21 21:08:42', '2025-03-13 00:14:34');
 
 --
 -- Indexes for dumped tables
