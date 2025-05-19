@@ -4,7 +4,7 @@ Vote System Project for St. Xavier's College
 Developed By Muthukrishnan M
 Started 10 Days Before the 2024-25 Academic Year Election.
 */
-// error_reporting(0);
+error_reporting(0);
 $academic_year=date('Y').'-'.((int)date('y')+1);
 class Connection
 {
