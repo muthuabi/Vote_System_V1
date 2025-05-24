@@ -151,7 +151,8 @@
         {
         try {
             if (file_exists($image_delete_url)) {
-            rename($image_delete_url, "trashed_" . time() . "_" . basename($image_delete_url));
+                unlink($image_delete_url);
+//             rename($image_delete_url, "trashed_" . time() . "_" . basename($image_delete_url));
                     return true;
                 } else {
                     throw new Exception('File Deletion Failed');
