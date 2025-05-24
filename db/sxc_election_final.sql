@@ -163,15 +163,29 @@ CREATE TABLE `vbooth` (
 -- Dumping data for table `vbooth`
 --
 
--- INSERT INTO `vbooth` (`vb_id`, `vb_name`, `vb_status`, `vb_location`, `vb_incharge`, `createdOn`, `updatedOn`) VALUES
--- (13, 'booth_01', 'active', 'Pope Auditorium', 'Krishnan', '2025-01-21 14:08:02', '2025-03-13 00:20:54'),
--- (15, 'booth_02', 'active', 'St Xavier\'s College', 'Krishna Moorthy', '2025-01-21 14:15:38', '2025-03-12 23:10:33');
+INSERT INTO `vbooth` (`vb_id`, `vb_name`, `vb_status`, `vb_location`, `vb_incharge`, `createdOn`, `updatedOn`) VALUES
+(1, 'booth_01', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(2, 'booth_02', 'inactive', 'St Xavier\'s College', 'Student', NOW(),NOW()),
+(3, 'booth_03', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(4, 'booth_04', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(5, 'booth_05', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(6, 'booth_06', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(7, 'booth_07', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(8, 'booth_08', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(9, 'booth_09', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(10, 'booth_10', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(11, 'booth_11', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(12, 'booth_12', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(13, 'booth_13', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(14, 'booth_14', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(15, 'booth_15', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(16, 'booth_16', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW()),
+(17, 'booth_17', 'inactive', 'St Xavier\'s College', 'Student', NOW(), NOW());
 
--- --------------------------------------------------------
 
---
+-- ----------------------------------
 -- Table structure for table `votes`
---
+-- ----------------------------------
 
 CREATE TABLE `votes` (
   `vote_id` int(11) NOT NULL,
@@ -203,9 +217,9 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
 
---
+-- -------------------------------------
 -- Indexes for table `candidates`
---
+-- -------------------------------------
 ALTER TABLE `candidates`
   ADD PRIMARY KEY (`candidate_id`),
   ADD UNIQUE KEY `regno` (`regno`),

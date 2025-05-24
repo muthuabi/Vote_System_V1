@@ -44,7 +44,7 @@
 
     <header>
         <?php
-   
+
         session_start();
         if (isset($_POST['rechoose']) || !isset($_COOKIE['vb_active']) ) {
             session_destroy();
@@ -54,6 +54,7 @@
 
             if(isset($_GET['loc_vs']) && !empty($_GET['loc_vs']))
             {
+
                 $vfname='vs_'.$_COOKIE['vb_active'].'_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").'.JSON';
                 $vs_val=$_GET['loc_vs'];
                 $vs_val=base64_decode($vs_val);
@@ -63,7 +64,7 @@
                 if(!file_exists($loc))
                     mkdir($loc,0777);
                 file_put_contents($loc_file,json_encode($vs_val,JSON_PRETTY_PRINT));
-                die("<center><b>Poll Ended... Navigate to Home </b></center>");
+                die("<center><b>Poll Ended... Navigate Back and Exit</b></center>");
             }
 
             $valid_gender = ['M', 'F'];
@@ -121,7 +122,7 @@
         ?>
     </header>
 
-    <!-- <main class="main-card-container footer-up"> -->
+    <main class="main-card-container footer-up">
 
 
     <?php
@@ -241,7 +242,8 @@
 
     <footer>
         <div class="footer-head">
-            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b>
+<!--             <a class="nav-link text-white" href="../index.php"><b>Home</b></a> -->
         </div>
     </footer>
 </body>

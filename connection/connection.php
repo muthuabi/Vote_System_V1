@@ -4,53 +4,58 @@ Vote System Project for St. Xavier's College
 Developed By Muthukrishnan M
 Started 10 Days Before the 2024-25 Academic Year Election.
 */
+
 error_reporting(0);
-$academic_year=date('Y').'-'.((int)date('y')+1);
+$academic_year = date('Y') . '-' . ((int)date('y') + 1);
+
 class Connection
 {
-    private $db_host='127.0.0.1';
-  /* 
-   In mobile Termux the host expects the Local Ip so i changed as direct ip ... in lap/system we can use localhost directly 
-*/
-    private $db_user='root';
-    private $db_password='';
-    private $db_dbase='sxc_election';
-    // public $err=null;
+    private $db_host = '127.0.0.1';
+    private $db_dbase = 'sxc_election';
     protected $conn;
+
     public function __construct()
     {
-        try{
-        // If any error occurs regarding Database Connection failure
-        // Comment the Below two Lines of Codes
-		$this->db_user=base64_decode("bXV0aHVhYmk=");
-		$this->db_password=base64_decode("TXV0aHUqMTIz");
-        $this->conn=new mysqli($this->db_host,$this->db_user,$this->db_password,$this->db_dbase);
-            if($this->conn->connect_error)
-            {
-                $this->conn=new mysqli($this->db_host,'root','',$this->db_dbase);
-                if($this->conn->connect_error)
-                    throw new Exception('Database Connection Failed');
+        // Enable mysqli exceptions
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+        // Primary (encoded) credentials
+        $user1 = base64_decode("bXV0aHVhYmk=");
+        $pass1 = base64_decode("TXV0aHUqMTIz");
+
+        // Fallback credentials
+        $user2 = 'root';
+        $pass2 = '';
+
+        try {
+            // First attempt
+            $this->conn = new mysqli($this->db_host, $user1, $pass1, $this->db_dbase);
+            $this->conn->set_charset("utf8mb4");
+        } catch (mysqli_sql_exception $e1) {
+            try {
+                // Fallback attempt
+                $this->conn = new mysqli($this->db_host, $user2, $pass2, $this->db_dbase);
+                $this->conn->set_charset("utf8mb4");
+            } catch (mysqli_sql_exception $e2) {
+                // Final failure
+                die("Database Connection Failed<br>" . $e2->getMessage());
             }
         }
-        catch(Exception $e)
-        {
-            echo $this->conn->connect_error;
-            die("<br>Database Connection Failure");
-        }
-
     }
+
     public function initConnection()
     {
         return $this->conn;
     }
+
     public function closeConnection()
     {
         $this->conn->close();
         return $this->conn;
     }
-
 }
-$db=new Connection();
-$conn=$db->initConnection();
-define('ROOT_DIR','SXC_VOTE_SYSTEM/');
+
+$db = new Connection();
+$conn = $db->initConnection();
+define('ROOT_DIR', 'SXC_VOTE_SYSTEM/');
 ?>
