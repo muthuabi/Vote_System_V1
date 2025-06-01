@@ -1,5 +1,5 @@
 <?php
-    ob_start();
+    ob_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,8 +76,11 @@
                 })
                 .done(function(data) {
                     if (flag == 'failed') {
-                        const on_event = new Event('online');
-                        window.dispatchEvent(on_event);
+//                         const on_event = new Event('online');
+//                         window.dispatchEvent(on_event);
+//                         flag = 'initial';
+                        const son_event = new Event('server-online');
+                        window.dispatchEvent(son_event);
                         flag = 'initial';
                     }
 
@@ -96,7 +99,7 @@
                         })
                         if (document.querySelector("#live-blink").getAnimations()[0])
                             document.querySelector("#live-blink").getAnimations()[0].pause();
-
+                       
 
                     } else {
                         document.querySelector("#live").innerHTML="LIVE";
@@ -143,16 +146,19 @@
 
                             table_ballot_all.innerHTML += `
             <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
-
+         
             `;
                         }
                     })
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
-                    flag = 'failed';
-                    const offline = new Event('offline');
-                    window.dispatchEvent(offline);
+//                     flag = 'failed';
+//                     const offline = new Event('offline');
+//                     window.dispatchEvent(offline);
                     // console.error("Request failed:", textStatus, errorThrown);
+                    flag = 'failed';
+                    const soffline = new Event('server-offline');
+                    window.dispatchEvent(soffline);
                 })
         }
 

@@ -22,7 +22,7 @@
         </style>
     <main class="content-wrapper">
         <div class="container py-2">
-        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <div class='alert alert-info alert-dismissible fade show' role='alert'>
            Table Migration is storing the current academic year data to a table with certain information so that, each academic year voters data and their position and votes will be saved and looked up when needed.
         </div>
     <?php 

@@ -1,9 +1,8 @@
 <?php
-    ob_start();
+    ob_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,8 +76,11 @@
                 })
                 .done(function(data) {
                     if (flag == 'failed') {
-                        const on_event = new Event('online');
-                        window.dispatchEvent(on_event);
+//                         const on_event = new Event('online');
+//                         window.dispatchEvent(on_event);
+//                         flag = 'initial';
+                        const son_event = new Event('server-online');
+                        window.dispatchEvent(son_event);
                         flag = 'initial';
                     }
 
@@ -150,10 +152,13 @@
                     })
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
-                    flag = 'failed';
-                    const offline = new Event('offline');
-                    window.dispatchEvent(offline);
+//                     flag = 'failed';
+//                     const offline = new Event('offline');
+//                     window.dispatchEvent(offline);
                     // console.error("Request failed:", textStatus, errorThrown);
+                    flag = 'failed';
+                    const soffline = new Event('server-offline');
+                    window.dispatchEvent(soffline);
                 })
         }
 
