@@ -1,3 +1,6 @@
+<?php
+    ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,29 +31,42 @@
         </div>
     </div> -->
     <header class="persistent-navbar d-flex flex-column align-items-center">
-        <nav class="sxc-header">
+        <nav class="sxc-header" style='position: relative;'>
             <img src="../assets/images/other_images/logo2.png" class="sxc-header-icon" alt="">
             <h5>St. Xavier's College (Autonomous), Palayamkottai - 627002</h5>
             <a style='position: absolute;top:10px;right:5px' class="nav-link text-white opacity-hover" href="../index.php"><b>Home</b></a>
         </nav>
-        <nav class="sxc-council-header">
+        <nav class="sxc-council-header" style="position: relative;">
+            <b style='position: absolute;top:0;left:5px'><?php if(isset($_COOKIE['vb_active'])) echo $_COOKIE['vb_active']; ?></b>
             <h5>Students Council Election 2024-25</h5>
         </nav>
     </header>
 
     <header>
         <?php
-   
+
         session_start();
-        if (isset($_POST['rechoose'])) {
+        if (isset($_POST['rechoose']) || !isset($_COOKIE['vb_active']) ) {
             session_destroy();
             header('location:index.php');
         }
         try {
-            // print_r($_SERVER);
 
-            
-            echo $vfname;
+            if(isset($_GET['loc_vs']) && !empty($_GET['loc_vs']))
+            {
+
+                $vfname='vs_'.$_COOKIE['vb_active'].'_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").'.JSON';
+                $vs_val=$_GET['loc_vs'];
+                $vs_val=base64_decode($vs_val);
+                $vs_val=json_decode($vs_val);
+                $loc="../admin/loc_vs/";
+                $loc_file="../admin/loc_vs/$vfname";
+                if(!file_exists($loc))
+                    mkdir($loc,0777);
+                file_put_contents($loc_file,json_encode($vs_val,JSON_PRETTY_PRINT));
+                die("<center><b>Poll Ended... Navigate Back and Exit</b></center>");
+            }
+
             $valid_gender = ['M', 'F'];
             $valid_shift = ['Shift-I', 'Shift-II'];
             if (!isset($_SESSION['user_select'])) {
@@ -79,12 +95,12 @@
                     
                     if($data['poll_status']=='ended')
                     {
-                        // $vfname='loc_vs_'.$_SERVER['REMOTE_ADDR'].date("_d_m_y_").substr(time(),-3).'.JSON';
-                        // if(isset($_GET['loc_vs']))
-                        // {
-                        //     $loc="../admin/loc_vs/$vfname";
-                        //     echo $loc;
-                        // }
+                        echo "
+                        <script>
+                        var vd=localStorage.getItem('vote_data');
+                        window.location.href='cast_vote.php?loc_vs='+btoa(vd);
+                        </script>";
+
                         die("<center><b>Poll Ended</b></center>");
                     }
                 }
@@ -150,7 +166,7 @@
                         $count = count($candidates);
                         if($count<=0)
                             echo "<center><b>Contact Admin!</b><br><b>This Post should be nocontest if no candidates.</b></center>";
-                        echo "<div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
+                        echo "<main class='main-card-container footer-up'><div class='candidates-container' style='grid-template-columns:repeat({$count},1fr);' >";
                         for ($j = 0; $j < count($candidates); $j++) {
                             echo "<form class='card candidate-card' action='' method='post' id='can{$candidates[$j]['candidate_id']}' >
                                 <div class='card-img-container'>
@@ -226,14 +242,18 @@
 
     <footer>
         <div class="footer-head">
-            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b>
+<!--             <a class="nav-link text-white" href="../index.php"><b>Home</b></a> -->
         </div>
     </footer>
 </body>
 <script>
     let ldata=<?php echo json_encode($_SESSION);?>;
+    let voted_flag=<?php echo (int)$voted; ?>;
     if(!localStorage.getItem("vote_data"))
         localStorage.setItem("vote_data",JSON.stringify({}));
+    if(voted_flag)
+    {
     Object.keys(ldata).forEach(el=>{
         if(!(el=="user_select" || el=="init" || el=="admin" || el=="admin_name" || el=="admin_role" || el=="admin_email"))
         {
@@ -251,6 +271,7 @@
            }
         }
 
-    })
+        })
+    }
 </script>
 </html>

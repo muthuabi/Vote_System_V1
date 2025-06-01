@@ -133,7 +133,7 @@ if(isset($_POST['change_pass']))
                 <li class="nav-item"><a href="sxc-positions.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-positions.php')  echo 'nav-active'  ?>">Add Positions</a></li>
                 <li class="nav-item"><a href="sxc-candidates.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-candidates.php')  echo 'nav-active'  ?>">Add Candidates</a></li>
                 <li class="nav-item"><a href="sxc-admin.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-admin.php')  echo 'nav-active'  ?>">Add Admin</a></li>
-                 <li class="nav-item"><a href="sxc-vbooths.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-vbooths.php')  echo 'nav-active'  ?>">Manage VBooths</a></li>
+<!--                 <li class="nav-item"><a href="sxc-vbooths.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-vbooths.php')  echo 'nav-active'  ?>">Manage VBooths</a></li>-->
                 <?php if(str_contains($_SERVER['REQUEST_URI'],'individual-post.php'))  echo "<li class='nav-item'><a href='#' class='nav-link nav-active'>Individual Candidates</a></li>";?>
                 <li class="nav-item"><a href="dyn_ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='dyn_ballot.php')  echo 'nav-active'  ?>">Ballot Table</a></li>
                 <li class="nav-item"><a href="sxc-old-ballot.php" class="nav-link <?php if(basename($_SERVER['REQUEST_URI'])=='sxc-old-ballot.php')  echo 'nav-active'  ?>">Old Ballot Table</a></li>

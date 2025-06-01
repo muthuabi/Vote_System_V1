@@ -20,7 +20,7 @@
     <main class="content-wrapper">
 
         <?php
-
+        die("<center><h2>Feature Removed!</h2></center>");
         include_once("../util_classes/VBooth.php");
         include_once("includes/response_modal.php");
 

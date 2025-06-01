@@ -24,22 +24,6 @@
         <nav class="sxc-council-header">
             <h5>Students Council Election 2024-25</h5>
         </nav>
-        <?php
-//             @include_once("./connection/connection.php");
-//             @include_once("./util_classes/VBooth.php");
-//             if(isset($_COOKIE['vb_active']))
-//             {
-//                 $name=$_COOKIE['vb_active'];
-//                 $data=$vb->get_status(0,$name);
-//                 //print_r($data);
-//                 //if($data && isset($data['vb_status'])){
-//                 $status=$data['vb_status'];
-//                 if($status!='restricted')
-//                 $vb->update_status('inactive',0,$name);
-//                 setcookie('vb_active','',-1);
-//                 // }
-//             }
-        ?>
     </header>
     <main id="home" class="footer-up">
         <div class="home-box">
