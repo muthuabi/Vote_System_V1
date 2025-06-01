@@ -1,0 +1,87 @@
+Author: Muthukrishnan M
+Project: Vote System
+
+As this project works in the Local Area Network
+
+You must configure the firewall of the System which is gonna be act as a Server.
+Without Configuration of Firewall, other systems(client) cannot connect to the Main Server(Local Server)
+
+To configure firewall,
+
+See the Below Web Sites,
+How to Setup Firewall Configuration, Links (In case of doubt)
+
+Link 1: (Recommended)
+https://finerdp.com/blog/windows_firewall_add_new_rule_windows_server_2022
+
+Link 2:
+https://4it.com.au/kb/article/add-additional-tcp-rule-windows-firewall-non-standard-rdp-port-windows-10/#google_vignette
+
+When you come across Protocols and Port Tab/Page,
+
+Put 80,443 in the Specific Local Ports Field
+
+80 - http
+443 - https
+
+80 alone is enough though.
+
+If any doubt Just Select Allow All Ports
+
+Give a Meaningfull Name to the Rule Name 
+Eg:(Allow Port 80)
+Description:
+SXC Vote System Local Port Configuration (Optional)
+
+That's it.. Click Next the rule would be created.
+
+Then restart the XAMPP server if already Started.
+Else Start Now.
+
+
+To Find the IP Address... 
+
+Go to Windows Terminal (Command Prompt)
+
+Type 'ipconfig'
+
+There you can see various connections.
+
+As in SXC all are connected to LAN via Ethernet
+See the Ethernet Section
+
+there you may find ipv6 Address
+ipv4 address
+
+ipv4 addess is the address we need
+
+Copy the address
+
+Eg:
+192.68.76.115
+
+Type this address in the other system's browser
+
+http://192.68.76.115/Vote_System 
+
+or simply
+
+192.68.76.115/Vote_System 
+
+See whether it is working.
+
+If not or couldn't find the problem... contact Project Developer.
+
+For Verification whether all systems are connected
+
+see the First three Values of IPV4(GateWay)
+
+192.68.76.
+
+Every system connected to the Same Network have this as Same (mostly).
+
+
+To remove firewall rule after Election
+
+Just click on the rule and in actions tab right side, you can delete/remove it easily.
+

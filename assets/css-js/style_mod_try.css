@@ -1,0 +1,1115 @@
+/*
+Vote System Project for St. Xavier's College
+Developed By Muthukrishnan M
+Started 10 Days Before the 2024-25 Academic Year Election.
+*/
+/* @font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Black.ttf')
+    format('trutype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf')
+    format('trutype');
+    font-weight: normal;
+    font-style: normal;
+}
+@keyframes type-feel {
+    from {
+        max-width: 0;
+    }
+
+    to {
+        max-width: 100%;
+    }
+
+}
+
+@keyframes blink-feel {
+
+    from,
+    to {
+        border-right: 3px solid transparent
+    }
+
+    50% {
+        border-right: 3px solid black;
+    }
+
+} */
+@keyframes anime-pull-up {
+    from{
+        opacity:0;
+        transform: translateY(20px);
+    }
+    to
+    {
+        opacity:100%;
+        transform: translateY(0px);
+    }
+  
+    
+}
+@keyframes anime-blink {
+  from
+  {
+    opacity:5%;
+  }
+  to
+  {
+    opacity:100%;
+  }
+  
+}
+ body.need-color
+ {
+    background-color: #fcf3e7;
+ 
+ }
+
+.head-role {
+    border-right: 5px solid transparent;
+    padding: 0.1rem 0.5rem;
+    padding-right: 0.2rem;
+    /* animation: type-feel 3s steps(30, end), blink-feel 0.75s step-end 10; */
+    overflow: hidden;
+    white-space: nowrap;
+    width: fit-content;
+
+}
+#home {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-image: url(../images/other_images/homebg1.jpg);
+    height: 70vh;
+    
+    }
+    .home-box
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(241, 232, 213, 0.87);
+        padding:3rem 1rem;
+        border-radius: 7px;
+        margin: 1.5rem;
+        animation: anime-pull-up 1s ease-in-out;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position:center;
+        word-wrap: break-word;
+        max-width: 100%;
+      
+    }
+    .home-box .head-name
+    {
+        color:#600000;
+    }
+.profile-card {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem;
+
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+nav.navbar {
+    border-radius: 5px;
+    background-color: #600000;
+    border-top: 5px solid #daa106;
+    border-bottom: 5px solid #daa106;
+    z-index: 100000;
+    position: fixed;
+    width: 100%;
+    padding: 0.2rem 0.1rem !important;
+    color: white;
+    top: 0;
+}
+nav.navbar  form
+{
+    display: flex !important;
+    gap:0.5rem;
+}
+
+nav .navbar-brand {
+    padding: 0 0.5rem;
+
+}
+#change_pass_container
+{
+  background-color: rgba(0, 0, 0, 0.747);
+  top:0;
+  height:100vh!important;
+  padding-top: 5rem;
+ 
+}
+#change_pass_container form
+{
+
+  margin-top: -5rem;
+  border-radius: 10px;
+  animation: anime-pull-up 0.5s ease-in-out;
+  background-color: #fcf3e7;
+  width:400px !important;
+}
+#change_pass_container form .btn
+{
+  border-radius: 15px;
+  padding:0.5rem 1rem;
+}
+#change_pass_container form .btn-link
+{
+  text-decoration: none;
+  background-color: rgb(199, 199, 199);
+}
+.offcanvas-header {
+    background-color:#600000;
+    border-top: 5px solid #daa106;
+    border-bottom: 5px solid #daa106;
+    color: white;
+
+}
+
+.offcanvas-body {
+    color: white;
+    padding: 0;
+    background-color: #600000;
+}
+
+.sidebar-inner-card {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1rem 1rem 0.5rem;
+    align-items: center;
+
+}
+
+.sidebar-sub-head {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #9b1111cc;
+    border-bottom: 2px solid #daa106;
+}
+nav .btn.btn-dark
+{
+  background-color: #daa106;
+  border-radius: 15px;
+}
+.main-sidebar .nav-link {
+    padding: 1rem 1rem;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.sidebar-profile-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-active {
+    border-left: 5px solid #daa106;
+    background-color: #725d42a2;
+}
+
+.main-sidebar .nav-link:hover {
+    background-color: #c4a174;
+}
+
+.main-sidebar .btn-close {
+    color: white;
+}
+
+.offcanvas {
+    z-index: 100000;
+    visibility: visible;
+
+}
+.content-wrapper {
+    margin-top: 5.2rem;
+    padding:0.5rem;
+    position: relative;
+}
+table.table.sxc-candidates
+{
+    font-size: 80%;
+    
+}
+.sxc-candidates thead tr th
+{
+  text-align: left;
+}
+
+.sxc-positions thead tr th
+{
+  text-align: left;
+}
+.sxc-candidates tbody tr td:first-of-type,.sxc-candidates thead tr th:first-of-type
+{
+  display: none;
+}
+.sxc-positions tbody tr td:first-of-type,.sxc-positions thead tr th:first-of-type
+{
+  display: none;
+}
+table .can_small_img
+{
+    width:35px;
+    height:35px;
+}
+table th
+{
+    text-align: center;
+}
+
+table.table button.btn
+{
+    font-size: inherit;
+}
+form label
+{
+    font-weight: bold;
+}
+form small
+{
+    padding:1px 8px;
+}
+form .form-group
+{
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+    position: relative;
+   justify-content: center;
+
+}
+.password-show
+{
+  position: absolute;
+  top: 25%;
+  right:1rem;
+  transform: translateY(50%);
+  opacity: 15%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group > .password-show
+{
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  right: 1rem;
+}
+.password-show::after
+{
+  content: 'Show';
+  position: absolute;
+  
+}
+.password-show:checked::after
+{
+  content: 'Hide';
+}
+@keyframes small_err_message {
+  from
+  {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to
+  {
+    opacity: 100%;
+    transform: translateY(0px);
+  }
+  
+}
+form .form-group small
+{
+  display: none;
+  color:orange;
+  animation: small_err_message 0.5s ease-in-out;
+}
+/* form .form-group .form-control:hover ~ small
+{
+  display: block;
+}
+form .form-group .form-control:focus ~ small
+{
+  display: block;
+} */
+input:required:focus:invalid + small,  textarea:required:focus:invalid + small,.form-control:invalid + small
+{ 
+  display: block;
+}
+.modal
+{
+    z-index: 100000!important;
+}
+.response_modal .modal-body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-container
+{
+    display: flex;
+    padding:0.5rem;
+    margin: 0.7rem;
+   height: 65vh;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+form.login_form
+{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    width:40%;
+    padding:1.2rem 1.2rem;
+    border-radius: 7px;
+    background-color: #e6c589b4;
+    animation: anime-pull-up 0.5s ease-in;
+}
+form.login_form .input-group
+{
+  border-radius: 15px;
+  overflow: hidden;
+  height: 2.7rem;
+}
+.btn-close
+{
+  z-index: 10050!important;
+}
+form.login_form .form-group
+{
+  gap:0.5rem;
+}
+form.login_form label
+{
+  text-transform: uppercase;
+}
+form.login_form .form-control
+{
+background-color:#fcf3e793;
+}
+form.login_form.criteria_form .form-control
+{
+  border-radius: 15px;
+  overflow: hidden;
+  height: 2.7rem;
+}
+.svg-icon
+{
+  width:25px;
+  height:25px;
+}
+.opacity-hover
+{
+    opacity: 0%;
+    transition: opacity 0.2s;
+}
+.opacity-hover:hover
+{
+    opacity: 25%;
+}
+
+#my_toast_offline
+{
+	  position: fixed;
+    top:5rem;
+    right:0.4rem;
+    height:fit-content;
+}
+#my_toast_offline:not(.show)
+{
+  z-index: 5000!important;
+}
+#my_toast_offline.show
+{
+  z-index: 15000!important;
+}
+
+
+  .main-card-container
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .candidates-container
+  {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    flex-wrap: wrap;
+    gap:1rem;
+    margin: 0.5rem 0rem;
+    justify-content: center;
+  }
+  .card-container-head
+  {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #ddd3c5cb;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+  .card-container-head h2
+  {
+    font-weight: bolder;
+    letter-spacing: 0.3rem;
+  }
+
+  .card.candidate-card
+  {
+    margin:0.5rem;
+    border-radius: 10px;
+    height: fit-content;
+    width: 300px;
+    /* border:5px solid rgb(155, 167, 170); */
+    background-color:white;
+    box-shadow: 0px 0px 12px 5px rgb(231, 234, 235);
+    
+  }
+  .card .card-header
+  {
+    background-color: rgb(233, 225, 225);
+    padding:0.8rem 0.5rem;
+    text-align: center;
+    border:0.5px solid rgb(223, 217, 217);
+  }
+  .card .card-body
+  {
+    margin-top: 0;
+    padding:0.2rem 0.7rem;
+    background-color: #600000;
+
+    color:white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap:0.1px;
+  }
+  .card center
+  {
+    background-color: #600000;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .card #vote
+  {
+    font-weight: bolder;
+   
+    display: flex;
+    gap:1rem;
+    justify-content: center;
+  }
+  .vote_btn
+  {
+    text-align: center;
+    text-transform: uppercase;
+    width:fit-content;
+    padding:0.7rem 3rem;
+    margin:0.5rem;
+    border-radius: 25px;
+    background-color: #daa106;
+    transition: all 0.5s;
+    border:0.5px solid #600000;
+  }
+  .card .vote_btn:hover
+  {
+    background-color: green;
+    /* box-shadow: 0px 0px 7px 2px green; */
+    border: 0.5px solid rgba(31, 30, 30, 0.863);
+  
+  }
+  .modal
+  {
+    z-index: 200000;
+  }
+  .result-modal
+  {
+    top:2.5rem;
+    animation: anime-pull-up 1s ease-in-out;
+  }
+  .result-modal .modal-content
+  {
+    border: none;
+  
+  }
+  .result-modal .modal-header
+  {
+    padding:1rem 1rem;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .result-modal .modal-header title
+  {
+    height: fit-content;
+    width: fit-content;
+  }
+  .card-img-container
+  {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(248, 248, 248);
+    padding: 1rem 0rem;
+  }
+  .card-img-container .card-img-top
+  {
+    height:250px;
+    width: 225px;
+    object-fit: cover;
+    object-position: top;
+  
+  }
+  .dashboard-post-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-post-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 7px;
+    border-left: 10px solid rgb(89, 182, 211);
+    width: 450px;
+    margin: 0.5rem;
+    box-shadow: 1px 2px 12px 5px rgb(231, 229, 229);
+}
+.dash-body-post
+{
+    display:flex;
+    align-items:center;
+    gap:3rem;
+    width:100%
+}
+
+.dashboard-post-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-data {
+    display: flex;
+    flex-direction: column;
+}
+.result-modal
+{
+    position: relative;
+    padding:0.5rem;
+}
+/* INDEX HEADER AND FOOTER FOR USER AREA */
+.sxc-header
+{
+    padding:0.5rem 1rem;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    background-color:#600000 !important;
+    color:white;
+    align-items: center;
+    gap:1rem;
+    border-top: 2px solid #daa106  ;
+    border-bottom: 5px solid #daa106  ;
+}
+.sxc-council-header
+{
+    padding:0.5rem 1rem;
+    width: 100%;
+    background-color:#f3d881bb;
+    display:flex;
+    color:#600000;
+    justify-content:center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+.sxc-council-header h5
+{
+    font-weight: bold;
+}
+.sxc-header-icon
+{
+    width:50px;
+    height: 50px;
+}
+footer
+{
+    display: block;
+    background-color: #600000;
+    color:rgb(209, 209, 209);
+    padding:3rem 1rem;
+    border-top: 5px solid #daa106  ;
+    border-bottom: 5px solid #daa106 ;
+}
+.footer-head
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.footer-head b
+{
+    font-size: small;
+    color: gray;
+}
+.individual-card-container
+{
+  display: flex !important;
+  justify-content: center;
+  flex-wrap:wrap!important;
+  gap:0.5rem;
+}
+.common_post
+{
+  background-color: rgb(214, 208, 208);
+}
+
+#ballot_all tr td:not(#vote_data)
+{
+  font-weight: bolder;
+  
+}
+#ballot_all #vote_data
+{
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: large;
+  padding:0;
+}
+.sidebar-card
+{
+  padding: 0.7rem 0rem;
+}
+#ballot_head
+{
+  display: flex;
+  width:100%;
+  justify-content: center;
+  align-items:baseline;
+  margin-top: 1rem;
+  gap:0.5rem;
+}
+#ballot_head b
+{
+  font-size: 150%;
+}
+#ballot_head div
+{
+  display: flex;
+  align-items: center;
+  gap:5px;
+}
+#live
+{
+  font-size: large;
+}
+#live-blink
+{
+  display: block;
+  width:15px;
+  height:15px;
+  border-radius: 50%;
+  background-color: red;
+  animation: anime-blink 1s infinite ease-in-out;
+}
+/* #vote_status
+{
+  max-height: 0.5rem;
+} */
+#vote_status,#vote
+{
+ 
+  padding:0rem 0.5rem;
+}
+.poll_form
+{
+  cursor:default;
+  position: fixed;
+  bottom: -2.5rem;
+  right:0.5rem;
+  z-index: 10000;
+  opacity:75%;
+  transition: opacity 0.5s, bottom 0.5s;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap:0.2rem;
+}
+.poll_form:hover
+{
+  opacity: 100%;
+  bottom:0.5rem;
+}
+@keyframes anime-up-vote 
+{
+  0%{
+    transform: translateY(3px);
+  }
+  50%
+  {
+    transform: translateY(0px);
+  }
+  100%
+  {
+    transform: translateY(-3px);
+  }
+}
+@keyframes anime-down-vote 
+{
+  0%{
+    transform: translateY(-3px);
+  }
+  50%
+  {
+    transform: translateY(0px);
+  }
+  100%
+  {
+    transform: translateY(3px);
+  }
+}
+/* #vote_data
+{
+  overflow: hidden;
+} */
+.up_vote
+{
+   color:green; 
+   font-size: 35px;
+  animation: anime-up-vote 1.5s linear infinite;
+  
+  /* animation: anime-blink 2s linear infinite; */
+}
+.down_vote
+{
+  color:red; 
+  font-size: 35px;
+  animation: anime-down-vote 1.5s linear infinite;
+  /* animation: anime-blink 2s linear infinite; */
+}
+#ballot_all tr:has(#vote_status[class='up_vote'])
+{
+  background-color: rgba(16, 182, 16, 0.185);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(71, 71, 71);
+  transition: all 0.5s;
+}
+#ballot_all tr:has(#vote_status[class='down_vote'])
+{
+  
+  font-weight:lighter;
+}
+
+/* #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
+{
+  content:'Won'; 
+  
+} */
+.profile-card
+{
+  font-weight: bold;
+}
+.termination-card
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+    padding:1rem;
+    height:15rem;
+    border-radius: 15px;
+    background-color: #f8d59493;
+    /* box-shadow: 0px 0px 12px 2px #f3d9a893 ; */
+}
+.sxc-header-print {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap:5rem;
+}
+
+.sxc-header-icon-print {
+  width: 300px;
+  height: 300px;
+  object-fit:contain;
+}
+.sxc-header-body
+{
+  text-align: center;
+}
+.hr
+{
+  height:2px;
+  border:2px solid black;
+}
+.pr-only
+{
+  display: none;
+}
+#print_btn
+{
+  position: relative;
+}
+#dyn_ballot td,#dyn_ballot  th
+{
+    text-align: left;
+    border-bottom: none;
+}
+
+#dyn_ballot tbody tr
+{
+    border-bottom: 0.5px solid rgb(219, 217, 217);
+ 
+}
+
+@media screen and (min-width:768px) {
+    .offcanvas {
+        visibility: visible;
+        position: fixed;
+        transform: translateX(0);
+        min-height: 100vh;
+        top: 0;
+        z-index: 100;
+        width: 210px;
+    }
+    .content-wrapper {
+        padding:0rem 0.3rem;
+        margin-left: 210px;
+    }
+}
+@media screen and (min-width:1400px) 
+{
+        body
+        {
+            font-size:larger;
+        }
+    
+        .icon
+        {
+            width:50px;
+            height: 50px;
+        }
+      .offcanvas
+      {
+        width: 350px;
+
+      }  
+      #ballot_head b
+      {
+        font-size: 170%;
+      }
+      .sidebar-inner-card
+      {
+        gap:2rem;
+      }
+      nav img.icon
+      {
+        width:50px;
+        height: 50px;
+      }
+      nav .sxc-header-icon,.offcanvas img
+      {
+        width:65px!important;
+        height:65px!important;
+      }
+      .sidebar-sub-head
+      {
+        padding-top:1rem !important;
+        padding-bottom: 1rem !important;
+      }
+      nav.navbar
+      {
+        align-items: center;
+        /* padding:1rem 0.5rem !important; */
+      }
+     .offcanvas-title
+      {
+        font-size: larger;
+      }
+  
+      .content-wrapper 
+      {
+        margin-top: 8rem;
+        margin-left: 350px;
+      }
+      /* .content-wrapper b
+      {
+        font-size: 150%;
+        margin-top:1.5rem;
+        margin-bottom: 0.5rem;
+      } */
+      .dashboard-post-card
+      {
+        min-width:500px;
+     
+        font-size: x-large;
+        padding:1.5rem;
+      }
+      #post_name
+      {
+        font-size: 100%;
+      }
+      a.btn.rounded-circle
+      {
+        display: flex;
+        width:70px;
+        height:70px;
+        align-items: center;
+        justify-content: center;
+        padding:1rem;
+        
+      }
+      .dashboard-post-card-icon img
+      {
+        width:130px;
+        height:130px;
+      }
+      .individual-card-container
+      {
+        display: flex !important;
+        justify-content: center;
+        flex-wrap:wrap!important;
+        gap:2rem;
+      }
+      .individual-card-container .individual-card
+      {
+        min-width:400px;
+      }
+      .individual-card-container .individual-card img
+      {
+        width:350px;
+        height: 350px;
+      }
+      .individual-card-container .individual-card span
+      {
+        font-size: 150%;
+      }
+      .individual-card-container .individual-card .card-title
+      {
+        font-size: 35px;
+      }
+      .individual-card-container .individual-card .card-title small
+      {
+        font-size: 20px;
+      }
+      .individual-card-container .individual-card .card-text
+      {
+        font-size: 25px;
+      }
+    
+    
+      
+}
+@media screen and (max-width:768px) 
+{
+    form.login_form
+    {
+        width:95%;
+    }
+    .candidates-container
+    {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+}
+@media print {
+  .pr-only
+  {
+    display: flex;
+  }
+  /* #ballot_all tr:has(#vote_status[class='up_vote']) td:last-child::after
+  {
+    display: block;
+  } */
+  /* #ballot_all
+  {
+    font-size: smaller;
+  } */
+  /* table br
+  {
+    display: none;
+  } */
+  #ballot_all tr:has(#vote_status[class='up_vote'])
+  {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+  }
+  /* #ballot_all tr:has(#vote_status[class='down_vote'])
+  {
+    display: none;
+  } */
+  /* table
+  {
+    font-size: small;
+  } */
+   /* body
+   {
+    font-size: small;
+   } */
+   .sxc-header-icon-print
+   {
+    height: 100px;
+    width: 100px;
+   }
+  header
+  {
+    display: none;
+   
+  }
+  .content-wrapper
+  {
+    margin-top: 0rem;
+  }
+  /* #vote_status
+  {
+    display: none;
+  } */
+  .pr-not
+  {
+    display: none!important;
+  }
+  .sxc-header-print
+  {
+    justify-content: space-evenly;
+    gap:1rem;
+  }
+
+}

@@ -1,0 +1,9 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-20.48 -20.48 552.96 552.96" xml:space="preserve" width="800px" height="800px" fill="#000000" stroke="#000000" stroke-width="0.00512">
+<g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+<rect x="-20.48" y="-20.48" width="552.96" height="552.96" rx="276.48" fill="#ffffff" strokewidth="0"/>
+</g>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="6.144"/>
+<g id="SVGRepo_iconCarrier"> <path style="fill:#FFFFFF;" d="M256,508C117.04,508,4,394.96,4,256S117.04,4,256,4s252,113.04,252,252S394.96,508,256,508z"/> <path style="fill:#404040;" d="M256,8c136.752,0,248,111.248,248,248S392.752,504,256,504S8,392.752,8,256S119.248,8,256,8 M256,0 C114.608,0,0,114.608,0,256s114.608,256,256,256s256-114.608,256-256S397.392,0,256,0L256,0z"/> <g> <polygon style="fill:#0BA4E0;" points="298.8,332.464 289.232,319.632 374.752,256 289.232,192.368 298.8,179.536 401.568,256 "/> <rect x="110.448" y="248" style="fill:#0BA4E0;" width="277.696" height="16"/> </g> </g>
+</svg>
