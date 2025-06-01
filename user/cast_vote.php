@@ -226,7 +226,8 @@
 
     <footer>
         <div class="footer-head">
-            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b><a class="nav-link text-white" href="../index.php"><b>Home</b></a>
+            <b>Designed & Maintained by SXC Web Team | © 2022 St. Xavier's College. All rights reserved.</b>
+<!--             <a class="nav-link text-white" href="../index.php"><b>Home</b></a> -->
         </div>
     </footer>
 </body>

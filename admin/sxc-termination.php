@@ -24,6 +24,15 @@
     <?php 
     include_once("includes/confirm_modal.php");
     include_once("../util_classes/Admin.php");
+    include_once("../util_classes/Polls.php");
+    if($data=$poll->get_status($academic_year))
+    {
+
+        if($data['poll_status']=='started')
+        {
+            die("<center><b>Access cannot be Granted while Polling Started!</b></center>");
+        }
+    }
     
     ?>
             <div class="container py-3">

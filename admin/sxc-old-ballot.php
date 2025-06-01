@@ -34,11 +34,11 @@
        <div class='table-responsive'>
         <table class='table'>
             <thead>
-                <tr>
-                    <th>Regno</th>
-                    <th>Post</th>
-                    <th>Votes</th>
-                    <th>Election Year</th>
+                <tr >
+                    <th style='text-align:left'>Regno</th>
+                    <th style='text-align:left'>Post</th>
+                    <th style='text-align:left'>Votes</th>
+                    <th style='text-align:left'>Election Year</th>
 
                 </tr>
              

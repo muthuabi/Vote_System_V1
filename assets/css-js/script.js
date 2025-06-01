@@ -36,6 +36,28 @@ window.addEventListener("resize",(e)=>{
 //     window.print();
 //     location.reload();
 // }
+
+
+
+const stopAnimations = () => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    `;
+    style.id = 'stop-animations';
+    document.head.appendChild(style);
+};
+
+const resumeAnimations = () => {
+    const style = document.getElementById('stop-animations');
+    if (style) style.remove();
+};
+
+
+
 document.addEventListener("DOMContentLoaded",(event)=>{
 
     
@@ -106,6 +128,21 @@ document.addEventListener("DOMContentLoaded",(event)=>{
         toaster.show();
     }
   }
+    window.addEventListener("server-online",(e)=>{
+        if(liveblink)
+        liveblink.getAnimations()[0].play();
+        // votestatus.getAnimations()[0].play();
+
+		init_toast('Server Back Online');
+        // init_toast('Connection Back Online',"my_toast_offline_user");
+    });
+    window.addEventListener("server-offline",(e)=>{
+		if(liveblink)
+        liveblink.getAnimations()[0].pause();
+		// votestatus.getAnimations()[0].pause();
+        init_toast('Server Offline');
+        // init_toast('Connection Offline',"my_toast_offline_user");
+    });
     window.addEventListener("online",(e)=>{
         if(on_off)
         on_off.innerHTML=`<small style='background-color:green;border-radius:50%;width:10px;height:10px;'></small><small>Online</small>`;
