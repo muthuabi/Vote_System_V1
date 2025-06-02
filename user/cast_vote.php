@@ -69,7 +69,7 @@
             include_once("../util_classes/Polls.php");
           
             try {
-				echo "<form method='post' style='width:fit-content;position:fixed;top:0;'><button type='submit' class='btn btn-secondary opacity-hover'  name='rechoose'>rechoose</button></form>";
+				echo "<form method='post' style='width:fit-content;position:fixed;top:0;'><button type='submit' class='btn btn-secondary opacity-hover'  name='rechoose'>Rechoose</button></form>";
 
                 if($data=$poll->get_status($academic_year))
                 {
@@ -214,7 +214,7 @@
             }
         } catch (Exception $e) {
             die("<center><b>{$e->getMessage()}</b><br>
-            <form method='post'><button type='submit' class='btn btn-secondary opacity-hover' name='rechoose'>rechoose</button></form>
+            <form method='post'><button type='submit' class='btn btn-secondary opacity-hover' style='opacity:0.3' name='rechoose'>Click to Rechoose</button></form>
             </center>");
         }
 

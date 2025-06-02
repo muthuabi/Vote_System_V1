@@ -76,6 +76,13 @@ Started 10 Days Before the 2024-25 Academic Year Election.
 /* *{
   font-family: Poppins, Helvetica, sans-serif;
  }*/
+ 
+ img.lazy-blur {
+  filter: blur(2px);
+  border-radius: 50%;
+  transition: filter 0.4s ease;
+}
+
 .head-role {
     border-right: 5px solid transparent;
     padding: 0.1rem 0.5rem;
@@ -908,13 +915,14 @@ footer
 .sxc-header-print {
   display: flex;
   width: 100%;
-  justify-content: center;
-  gap:5rem;
+  justify-content: space-around;
+  align-items:center;
+  /* gap:5rem; */
 }
 
 .sxc-header-icon-print {
-  width: 300px;
-  height: 300px;
+  width: 150px!important;
+  height: 150px!important;
   object-fit:contain;
 }
 .sxc-header-body

@@ -58,8 +58,8 @@
             }
             else
             {
-                die("<center><b>Access Lost! Contact Admin</b><br>
-                <a  href='cast_vote.php' class='btn btn-dark opacity-hover'>Go to Cast Vote</a>
+                die("<center><b>Access Lost! Go to Cast Vote Page</b><br>
+                <a  href='cast_vote.php' class='btn btn-dark opacity-hover' style='opacity:0.3'>Cast Vote Page</a>
                 </center>");
             }
         ?>

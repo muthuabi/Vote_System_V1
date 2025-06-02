@@ -53,7 +53,7 @@
 
             <thead >
                 <tr>
-                    <th class="total_votes_th">Total Votes Polled - <b id="total_votes_polled"></b></th>
+                    <th class="total_votes_th">Total Votes Polled - <b id="total_votes_polled">0</b></th>
                 </tr>
             </thead>
             <tbody id="ballot_all">

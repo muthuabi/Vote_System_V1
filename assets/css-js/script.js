@@ -57,6 +57,68 @@ const resumeAnimations = () => {
 };
 
 
+//Image Optimization
+function initializeLazyImages() {
+  var lazyImages = [];
+  var placeholder = "data:image/gif;base64,R0lGODlhAQABAPAAACMjIyH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
+
+  var allImages = document.querySelectorAll("img");
+  for (var i = 0; i < allImages.length; i++) {
+    var img = allImages[i];
+
+    // Skip excluded images
+    if (img.classList.contains("can_small_image") || img.classList.contains("sxc-header-icon-print")) {
+      continue;
+    }
+
+    var realSrc = img.src;
+
+    if (realSrc && !img.getAttribute("data-lazy")) {
+      var testImg = new Image();
+      testImg.src = realSrc;
+
+      if (!testImg.complete) {
+        img.setAttribute("data-lazy", realSrc);
+        img.src = placeholder;
+        img.classList.add("lazy-blur");
+        lazyImages.push(img);
+      }
+    }
+  }
+
+  var observer = new IntersectionObserver(function(entries, obs) {
+    for (var i = 0; i < entries.length; i++) {
+      var entry = entries[i];
+
+      if (entry.isIntersecting) {
+        var img = entry.target;
+        var realSrc = img.getAttribute("data-lazy");
+        if (!realSrc) continue;
+
+        var temp = new Image();
+        temp.src = realSrc;
+
+        temp.onload = function() {
+          img.src = realSrc;
+          img.removeAttribute("data-lazy");
+          img.classList.remove("lazy-blur");
+          obs.unobserve(img);
+        };
+      }
+    }
+  }, {
+    rootMargin: "100px 0px",
+    threshold: 0.01
+  });
+
+  for (var j = 0; j < lazyImages.length; j++) {
+    observer.observe(lazyImages[j]);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  initializeLazyImages();
+});
 
 document.addEventListener("DOMContentLoaded",(event)=>{
 

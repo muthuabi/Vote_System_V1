@@ -1,0 +1,66 @@
+# .htaccess file for SXC_VOTE_SYSTEM
+
+# PHP Memory Limit
+php_value memory_limit 256M
+
+# PHP Maximum Execution Time
+php_value max_execution_time 300
+
+# PHP Maximum Input Time
+php_value max_input_time 300
+
+# PHP Maximum size of POST data
+php_value post_max_size 50M
+
+# Allow PHP to process .html files
+# AddType text/html .html
+
+php_value date.timezone "Asia/Kolkata"
+
+# Block direct browser access to PHP files inside util_api or util_classes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Only block if the request comes directly (not as an include)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*(util_api|util_classes|db|connection|assets)/.*\.(php|sql)\ HTTP/
+    RewriteRule .* - [F,L]
+</IfModule>
+
+#All folders won't serve the Index List
+
+Options -Indexes
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to phpMyAdmin from external sources
+    RewriteCond %{REQUEST_URI} ^/phpMyAdmin/ [NC]
+    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+    RewriteRule ^.*$ - [F,L]
+</IfModule>
+
+#CACHE
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+
+  # CSS
+  ExpiresByType text/css "access plus 1 year"
+
+  # JavaScript
+  ExpiresByType application/javascript "access plus 1 year"
+
+  # Fonts (optional, if you're using any)
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+</IfModule>
+
+
+
