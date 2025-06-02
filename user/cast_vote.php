@@ -48,9 +48,6 @@
         }
         try {
             // print_r($_SERVER);
-
-            
-            echo $vfname;
             $valid_gender = ['M', 'F'];
             $valid_shift = ['Shift-I', 'Shift-II'];
             if (!isset($_SESSION['user_select'])) {
