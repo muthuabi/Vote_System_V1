@@ -67,7 +67,7 @@ function initializeLazyImages() {
     var img = allImages[i];
 
     // Skip excluded images
-    if (img.classList.contains("can_small_image") || img.classList.contains("sxc-header-icon-print")) {
+    if (img.classList.contains("can_small_img") || img.classList.contains("sxc-header-icon-print")) {
       continue;
     }
 
@@ -86,30 +86,33 @@ function initializeLazyImages() {
     }
   }
 
-  var observer = new IntersectionObserver(function(entries, obs) {
-    for (var i = 0; i < entries.length; i++) {
-      var entry = entries[i];
+	var observer = new IntersectionObserver(function(entries, obs) {
+	  for (var i = 0; i < entries.length; i++) {
+		var entry = entries[i];
 
-      if (entry.isIntersecting) {
-        var img = entry.target;
-        var realSrc = img.getAttribute("data-lazy");
-        if (!realSrc) continue;
+		if (entry.isIntersecting) {
+		  var img = entry.target;
+		  var realSrc = img.getAttribute("data-lazy");
+		  if (!realSrc) continue;
 
-        var temp = new Image();
-        temp.src = realSrc;
+		  var temp = new Image();
+		  temp.src = realSrc;
 
-        temp.onload = function() {
-          img.src = realSrc;
-          img.removeAttribute("data-lazy");
-          img.classList.remove("lazy-blur");
-          obs.unobserve(img);
-        };
-      }
-    }
-  }, {
-    rootMargin: "100px 0px",
-    threshold: 0.01
-  });
+		  (function(currentImg, currentSrc, observer) {
+			temp.onload = function() {
+			  currentImg.src = currentSrc;
+			  currentImg.removeAttribute("data-lazy");
+			  currentImg.classList.remove("lazy-blur");
+			  observer.unobserve(currentImg);
+			};
+		  })(img, realSrc, obs);
+		}
+	  }
+	}, {
+	  rootMargin: "100px 0px",
+	  threshold: 0.01
+	});
+
 
   for (var j = 0; j < lazyImages.length; j++) {
     observer.observe(lazyImages[j]);

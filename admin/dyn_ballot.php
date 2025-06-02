@@ -64,116 +64,127 @@
     </main>
 </body>
 <script>
+	// MY BASE CODE + GPT INTEGRATION FOR OPTIMIZATION
     let flag = 'initial';
-    document.addEventListener("DOMContentLoaded", (main) => {
+    document.addEventListener("DOMContentLoaded", () => {
         const table_ballot_all = document.getElementById("ballot_all");
+        const totalVotesElem = document.querySelector('#total_votes_polled');
+        const liveElem = document.querySelector("#live");
+        const liveBlinkElem = document.querySelector("#live-blink");
+
+        // Elements that show/hide for unopposed/nocontest rows
+        const unopposedElements = document.querySelectorAll('.unopposed, .nocontest');
+
+        // Helper to toggle display via class instead of inline style
+        function toggleDisplay(elements, show) {
+            elements.forEach(el => {
+                el.classList.toggle('hidden', !show);
+            });
+        }
+
+        // Helper to handle play/pause animations on a set of elements
+        function toggleAnimations(elements, play) {
+            elements.forEach(el => {
+                const animation = el.getAnimations()[0];
+                if (animation) {
+                    play ? animation.play() : animation.pause();
+                }
+            });
+        }
 
         function fetch_ballot() {
             $.ajax({
-                    url: '../util_api/ballot_api.php?ballot=BALLOT_ALL',
-                    method: 'GET',
-                    dataType: 'json'
-                })
-                .done(function(data) {
-                    if (flag == 'failed') {
-//                         const on_event = new Event('online');
-//                         window.dispatchEvent(on_event);
-//                         flag = 'initial';
-                        const son_event = new Event('server-online');
-                        window.dispatchEvent(son_event);
-                        flag = 'initial';
-                    }
+                url: '../util_api/ballot_api.php?ballot=BALLOT_ALL',
+                method: 'GET',
+                dataType: 'json'
+            })
+            .done(function(data) {
+                if (flag === 'failed') {
+                    window.dispatchEvent(new Event('server-online'));
+                    flag = 'initial';
+                }
 
-                    let poll_status = data.poll_status;
-                    document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
-                        element.style.display = 'none';
-                    })
-                    if (poll_status == "ended" || poll_status=="not_started") {
-                        document.querySelector("#live").innerHTML=("Polling "+poll_status).toUpperCase();
-                        document.querySelectorAll('.unopposed,.nocontest').forEach(element => {
-                            element.style.display = 'table-row';
-                        })
-                        document.querySelectorAll("#vote_status").forEach(element => {
-                            if (element.getAnimations()[0])
-                                element.getAnimations()[0].pause();
-                        })
-                        if (document.querySelector("#live-blink").getAnimations()[0])
-                            document.querySelector("#live-blink").getAnimations()[0].pause();
-                       
+                const poll_status = data.poll_status;
 
-                    } else {
-                        document.querySelector("#live").innerHTML="LIVE";
-                        document.querySelectorAll("#vote_status").forEach(element => {
-                            if (element.getAnimations()[0])
-                                element.getAnimations()[0].play();
-                        })
-                        if (document.querySelector("#live-blink").getAnimations()[0])
-                            document.querySelector("#live-blink").getAnimations()[0].play();
+                // Toggle visibility of unopposed/nocontest rows
+                if (poll_status === "ended" || poll_status === "not_started") {
+                    liveElem.textContent = ("Polling " + poll_status).toUpperCase();
+                    toggleDisplay(unopposedElements, true);
+                    toggleAnimations(document.querySelectorAll("#vote_status"), false);
+                    if (liveBlinkElem) toggleAnimations([liveBlinkElem], false);
+                } else {
+                    liveElem.textContent = "LIVE";
+                    toggleDisplay(unopposedElements, false);
+                    toggleAnimations(document.querySelectorAll("#vote_status"), true);
+                    if (liveBlinkElem) toggleAnimations([liveBlinkElem], true);
+                }
 
-                    }
-
-
+                // Rebuild table
+                if (poll_status === "started" || poll_status=="ended" || poll_status=="not_started") {
+                    let html = '';
+                    const pos_arr = [];
                     let total_votes = 0;
+
                     data.data.forEach(values => {
+                        total_votes += values.vote || 0;
+                    });
+                    totalVotesElem.textContent = total_votes;
 
-                        total_votes += values.vote;
-                        values.vote = (values.vote ? values.vote : 0);
-                        document.querySelector('#total_votes_polled').innerHTML = total_votes;
-                        if (document.querySelector(`#can${values.candidate_id}`)) {
-                            // document.querySelector(`#can${values.candidate_id} #candidate_id`).innerHTML=values.candidate_id;
-                            // document.querySelector(`#can${values.candidate_id} #candidate_name`).innerHTML=values.name;
-                            // document.querySelector(`#can${values.candidate_id} #post_name`).innerHTML=values.post;
-                            document.querySelector(`#can${values.candidate_id} #vote`).innerHTML = values.post_status == 'unopposed' ? 'unopposed' : values.vote;
-                            if (data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id == values.candidate_id) || values.post_status == 'unopposed') {
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (poll_status == 'ended') ? 'Win' : '<img src="../assets/icons/up-arrow.svg" class="svg-icon" />';
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('up_vote');
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('down_vote');
-                            } else {
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).innerHTML = (poll_status == 'ended') ? '' : '<img src="../assets/icons/down-arrow.svg" class="svg-icon" />';
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.add('down_vote');
-                                document.querySelector(`#can${values.candidate_id} #vote_status`).classList.remove('up_vote');
-                            }
+                    data.data.forEach(values => {
+                        // Skip nocontest posts from table building as per original code logic
+                        if (values.post_status === "nocontest") return;
 
-                        } else {
-                            let pos_arr = [];
-                            if (!pos_arr.includes(values.post_id)) {
-                                if (!document.querySelector(`#post${values.post_id}`))
-                                    table_ballot_all.innerHTML += `<br><tr class='common_post ${values.post_status}' id='post${values.post_id}'><th id='common_post' style='text-align:left;text-transform:uppercase' colspan='3'>${values.post} ${(values.post_shift=='Both')?'':'('+values.post_shift+')'}</th><th id='common_post_vote'></th></tr>
-                                <tr class='${values.post_status}'><th>PHOTO</th><th>NAME</th><th>REGNO</th><th>VOTES</th></tr>
-                                `;
-                                pos_arr.push(values.post_id);
-                            }
-
-                            table_ballot_all.innerHTML += `
-            <tr class='${values.post_status}' id=${'can' + values.candidate_id}><td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td><td id='candidate_name' style='text-transform:uppercase'>${values.name}</td><td id='regno'>${values.regno}</td><td id='vote_data'><span id='vote'>${values.vote}</span>  <span id='vote_status'${(data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id==values.candidate_id))?' class=up_vote ><img src="../assets/icons/up-arrow.svg" class="svg-icon" />':' class=down_vote><img src="../assets/icons/down-arrow.svg" class="svg-icon" />'}</span></td></tr>
-         
-            `;
+                        // Add post header row once
+                        if (!pos_arr.includes(values.post_id)) {
+                            html += `
+                                <br><tr class='common_post ${values.post_status}' id='post${values.post_id}'>
+                                    <th id='common_post' style='text-align:left;text-transform:uppercase' colspan='4'>
+                                        ${values.post} ${(values.post_shift === 'Both') ? '' : '(' + values.post_shift + ')'}
+                                    </th>
+                                </tr>
+                                <tr class='${values.post_status}'>
+                                    <th>PHOTO</th><th>NAME</th><th>REGNO</th><th>VOTES</th>
+                                </tr>
+                            `;
+                            pos_arr.push(values.post_id);
                         }
-                    })
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-//                     flag = 'failed';
-//                     const offline = new Event('offline');
-//                     window.dispatchEvent(offline);
-                    // console.error("Request failed:", textStatus, errorThrown);
-                    flag = 'failed';
-                    const soffline = new Event('server-offline');
-                    window.dispatchEvent(soffline);
-                })
+
+                        const voteDisplay = (values.post_status === 'unopposed') ? 'unopposed' : (values.vote || 0);
+                        const isMax = data.max_post_data[values.post_id] && (data.max_post_data[values.post_id].max_candidate_id === values.candidate_id);
+                        const voteStatusClass = ((isMax || values.post_status === 'unopposed') ? 'up_vote' : 'down_vote') +" "+((poll_status!=="started")?"no-anime":"");
+				
+                        const voteStatusIcon = (poll_status === 'ended') 
+                            ? (isMax || values.post_status === 'unopposed' ? 'Win' : '') 
+                            : (isMax || values.post_status === 'unopposed' 
+                                ? '<img src="../assets/icons/up-arrow.svg" class="svg-icon" />' 
+                                : '<img src="../assets/icons/down-arrow.svg" class="svg-icon" />');
+
+                        html += `
+                            <tr class='${values.post_status}' id='can${values.candidate_id}'>
+                                <td id='candidate_image'><img src='${values.image_url}' class='can_small_img'/></td>
+                                <td id='candidate_name' style='text-transform:uppercase'>${values.name}</td>
+                                <td id='regno'>${values.regno}</td>
+                                <td id='vote_data'>
+                                    <span id='vote'>${voteDisplay}</span>  
+                                    <span id='vote_status' class='${voteStatusClass}'>${voteStatusIcon}</span>
+                                </td>
+                            </tr>
+                        `;
+                    });
+
+                    table_ballot_all.innerHTML = html;
+                }
+
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                flag = 'failed';
+                window.dispatchEvent(new Event('server-offline'));
+            });
         }
 
+        // Initial fetch and interval polling
         fetch_ballot();
-        setTimeout(()=>{
-            fetch_ballot();
-        }
-        ,700);
-        setInterval(()=>{
-            fetch_ballot();
-        },3000);
-        // setInterval(()=>{
-        //     location.reload();
-        // },60000);
+        setInterval(fetch_ballot, 3000);
     });
 </script>
-
 </html>

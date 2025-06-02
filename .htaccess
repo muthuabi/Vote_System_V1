@@ -4,13 +4,16 @@
 php_value memory_limit 256M
 
 # PHP Maximum Execution Time
-php_value max_execution_time 300
+php_value max_execution_time 100
 
 # PHP Maximum Input Time
-php_value max_input_time 300
+php_value max_input_time 100
 
 # PHP Maximum size of POST data
-php_value post_max_size 50M
+php_value post_max_size 30M
+
+# PHP Maximum Variable SIZE
+php_value max_input_vars 3000
 
 # Allow PHP to process .html files
 # AddType text/html .html
@@ -49,7 +52,7 @@ Options -Indexes
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
-
+  ExpiresByType image/gif "access plus 1 year"
   # CSS
   ExpiresByType text/css "access plus 1 year"
 

@@ -76,7 +76,14 @@ Started 10 Days Before the 2024-25 Academic Year Election.
 /* *{
   font-family: Poppins, Helvetica, sans-serif;
  }*/
- 
+ .no-anime
+ {
+	 animation:none!important;
+ }
+ .hidden {
+    display: none !important;
+}
+
  img.lazy-blur {
   filter: blur(2px);
   border-radius: 50%;
@@ -879,13 +886,13 @@ footer
  /* animation: anime-down-vote 1.5s linear infinite;*/
    animation: vote-status-blink 2s 1s linear infinite; 
 }
-#ballot_all tr:has(#vote_status[class='up_vote'])
+#ballot_all tr:has(#vote_status[class*='up_vote'])
 {
   background-color: rgba(16, 182, 16, 0.185);
   color: rgb(71, 71, 71);
   transition: all 0.5s;
 }
-#ballot_all tr:has(#vote_status[class='down_vote'])
+#ballot_all tr:has(#vote_status[class*='down_vote'])
 {
   
   font-weight:lighter;

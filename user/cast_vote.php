@@ -204,7 +204,6 @@
                                     
                                 </div>
                                 <div class='modal-footer d-flex justify-content-center'>
-                               
                                 </div>
                             </div>
                             </div>
@@ -212,11 +211,22 @@
                 session_destroy();
                 header("Refresh:5");
             }
-        } catch (Exception $e) {
-            die("<center><b>{$e->getMessage()}</b><br>
-            <form method='post'><button type='submit' class='btn btn-secondary opacity-hover' style='opacity:0.3' name='rechoose'>Click to Rechoose</button></form>
-            </center>");
-        }
+        } 
+		catch (Throwable $t) {
+			if ($t instanceof Exception) {
+				die("<center><b>{$t->getMessage()}</b><br>
+				<form method='post'>
+					<button type='submit' class='btn btn-secondary opacity-hover' style='opacity:0.3' name='rechoose'>Click to Rechoose</button>
+				</form></center>");
+			} else {
+				header("refresh:2;url=index.php");
+				die("<center><b>Uncaught Error Occurred</b><br>{$t->getMessage()}<br>Redirecting to Selection Page...</center>");
+			}
+		}
+
+
+
+
 
     ?>
     </main>
