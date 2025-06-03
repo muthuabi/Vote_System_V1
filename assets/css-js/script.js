@@ -1,4 +1,5 @@
 let maincanvas;
+//Resize Canvas
 window.addEventListener("resize",(e)=>{
   
 
@@ -123,6 +124,37 @@ document.addEventListener("DOMContentLoaded", function() {
   initializeLazyImages();
 });
 
+//Prevention Scripts (It can be easily Bypassed... Yet a Little Prevention for General User)
+
+// Myself + GPT Intervention
+
+  // Disable Right-Click
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+  // Disable DevTools Keyboard Shortcuts
+  document.addEventListener("keydown", function (e) {
+    // F12
+    if (e.key === "F12") e.preventDefault();
+
+    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) {
+      e.preventDefault();
+    }
+
+    // Ctrl+U (View Source)
+    if ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === "U") {
+      e.preventDefault();
+    }
+
+    // Ctrl+S (Save As)
+    if ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === "S") {
+      e.preventDefault();
+    }
+  });
+
+
+
+//Main Scripts
 document.addEventListener("DOMContentLoaded",(event)=>{
 
     
