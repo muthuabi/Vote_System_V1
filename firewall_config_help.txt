@@ -66,7 +66,7 @@ http://192.68.76.115/Vote_System
 
 or simply
 
-192.68.76.115/Vote_System 
+192.68.76.115/Vote_System_V1
 
 See whether it is working.
 
