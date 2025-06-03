@@ -54,7 +54,7 @@
         public function totalVotesCandidatesbyPost()
         {
             try{
-            $qry="SELECT p.post_id,p.post,p.post_shift ,count(c.candidate_id) as 'candidate_count',sum(v.vote) as 'total_votes' FROM {$this->table1} as c inner join {$this->table2} as p on p.post_id=c.post_id left join {$this->table3} as v on c.candidate_id=v.candidate_id group by p.post_id";
+            $qry="SELECT p.post_id,p.post,p.post_shift ,count(c.candidate_id) as 'candidate_count',sum(v.vote) as 'total_votes' FROM {$this->table1} as c right outer join {$this->table2} as p on p.post_id=c.post_id left outer join {$this->table3} as v on c.candidate_id=v.candidate_id group by p.post_id";
             $qry_prepare=$this->conn->prepare($qry);
             $qry_prepare->execute();
             $res=$qry_prepare->get_result();
