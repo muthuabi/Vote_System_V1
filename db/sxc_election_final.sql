@@ -45,11 +45,12 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `name`, `email`, `password`, `role`, `created_on`, `updated_on`) VALUES
-(1, 'muthuabi', 'Muthukrishnan M', 'muthuabi292@gmail.com', 'b37e7d2627c468cee58d08def47b9032e877ed4c51f9f7886d13e4a5235074e4', 'admin', '2024-06-11 19:04:31', '2025-01-09 18:30:44'),
-(2, 'sxc_vote_admin', 'Master Admin', 'sxcvote@gmail.com', '84bc324ff69579d9a35cf6940f44d36c36dec9b3b067efe87af20d7b0f12f7a7', 'admin', '2024-06-11 19:04:31', '2025-01-09 21:59:34'),
-(3, 'principal', 'Rev. Fr. Principal', 'sxcprince@xavierstn.edu', '69e03750027e6b1e9f95bd21d227613c0024ec799ebfb7fe281371e1153f9bda', 'viewer', '2025-01-09 19:13:52', '2025-01-13 22:56:17'),
-(4, 'someone', 'Someone', 'someone@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'sub-admin', '2025-01-09 20:12:54', '2025-01-09 20:12:54'),
-(5, 'critical_support', 'Critical Support', 'critical@gmail.com', '459b8d5fc8d05dff1b7f2305ebaa9d58d8f1bf9e5eaa2d516e48877e9cc57135', 'admin', '2025-01-11 19:04:31', '2025-01-11 00:09:45');
+(1, 'muthuabi', 'MUTHUKRISHNAN', 'muthuabi292@gmail.com', 'b37e7d2627c468cee58d08def47b9032e877ed4c51f9f7886d13e4a5235074e4', 'admin', NOW(), NOW()),
+(2, 'sxc_vote_admin', 'Master_Admin', 'sxcvote@gmail.com', '84bc324ff69579d9a35cf6940f44d36c36dec9b3b067efe87af20d7b0f12f7a7', 'admin', NOW(), NOW()),
+(3, 'principal', 'Rev. Fr. Principal', 'sxcprince@xavierstn.edu', '69e03750027e6b1e9f95bd21d227613c0024ec799ebfb7fe281371e1153f9bda', 'viewer', NOW(), NOW()),
+(4, 'leolin', 'Rev. Fr. Leolin', 'leolin@gmail.com', 'df2379fe96f800c35a8cdfe6e223083fe3ce644668ffab61747be8e0b50baa7a', 'sub-admin', NOW(), NOW()),
+(5, 'coordinator', 'Web-Coordinator', 'coord@gmail.com', '620b2d0916189571adb0024c5a4304bcadd3536fab2321b3f96c4a45966872c9', 'admin', NOW(), NOW()),
+(6, 'critical_support', 'Critical Support', 'critical@gmail.com', '459b8d5fc8d05dff1b7f2305ebaa9d58d8f1bf9e5eaa2d516e48877e9cc57135', 'admin', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -139,9 +140,13 @@ CREATE TABLE `position` (
 -- Dumping data for table `position`
 --
 
--- INSERT INTO `position` (`post_id`, `post`, `description`, `post_shift`, `post_status`, `who_can_vote`, `created_at`, `updated_on`) VALUES
--- (5, 'President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:17', '2025-01-11 00:53:52'),
--- (6, 'Vice President', 'Serves', 'Both', 'opposed', 'MF', '2025-01-10 00:50:28', '2025-01-17 22:58:51');
+   INSERT INTO `position` (`post_id`, `post`, `description`, `post_shift`, `post_status`, `who_can_vote`, `created_at`, `updated_on`) VALUES
+   (1, 'President', 'Serves', 'Both', 'nocontest', 'MF', NOW(), NOW()),
+   (2, 'Vice President', 'Serves', 'Both', 'nocontest', 'MF', NOW(), NOW()),
+   (3, 'Secretary', 'Serves', 'Shift-I', 'nocontest', 'F', NOW(), NOW()),
+   (4, 'Secretary', 'Serves', 'Shift-II', 'nocontest', 'F', NOW(), NOW()),
+   (5, 'Joint Secretary', 'Serves', 'Shift-I', 'nocontest', 'M', NOW(), NOW()),
+   (6, 'Joint Secretary', 'Serves', 'Shift-II', 'nocontest', 'M', NOW(), NOW());
 
 -- --------------------------------------------------------
 
@@ -321,6 +326,7 @@ ALTER TABLE `candidates`
 --
 ALTER TABLE `votes`
   ADD CONSTRAINT `fk_candidate_votes` FOREIGN KEY (`candidate_id`) REFERENCES `candidates` (`candidate_id`) ON UPDATE CASCADE;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
