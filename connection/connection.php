@@ -12,6 +12,8 @@ class Connection
 {
     private $db_host = '127.0.0.1';
     private $db_dbase = 'sxc_election';
+    private $db_port=3306;
+    //Change Port As needed
     protected $conn;
 
     public function __construct()
@@ -29,12 +31,12 @@ class Connection
 
         try {
             // First attempt
-            $this->conn = new mysqli($this->db_host, $user1, $pass1, $this->db_dbase);
+            $this->conn = new mysqli($this->db_host, $user1, $pass1, $this->db_dbase,$this->db_port);
             $this->conn->set_charset("utf8mb4");
         } catch (mysqli_sql_exception $e1) {
             try {
                 // Fallback attempt
-                $this->conn = new mysqli($this->db_host, $user2, $pass2, $this->db_dbase);
+                $this->conn = new mysqli($this->db_host, $user2, $pass2, $this->db_dbase,$this->db_port);
                 $this->conn->set_charset("utf8mb4");
             } catch (mysqli_sql_exception $e2) {
                 // Final failure
